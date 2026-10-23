@@ -3,15 +3,480 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AXENTRA AI</title>
-<meta name="description" content="AXENTRA AI · Página en construcción">
+<title>AXENTRA IA · Gestión, datos e inteligencia artificial</title>
+<meta name="description" content="Implementación de Odoo con localización paraguaya, inteligencia de negocios, agentes de IA y robótica para empresas en Paraguay.">
+<meta property="og:title" content="AXENTRA IA · Gestión, datos e inteligencia artificial">
+<meta property="og:description" content="Implementación de Odoo, inteligencia de negocios, agentes de IA y robótica para empresas en Paraguay.">
+<meta property="og:image" content="https://www.axentra-ai.com.py/img/logo-axentra.png">
+<meta name="theme-color" content="#000000">
+<link rel="icon" type="image/png" href="img/simbolo-axentra.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  html, body { margin: 0; height: 100%; background: #fff; }
-  body { display: flex; align-items: center; justify-content: center; }
-  img { display: block; max-width: 100%; max-height: 100vh; width: auto; height: auto; }
+  :root {
+    /* Superficies (de más profunda a más alta) */
+    --void: #000000;
+    --onyx: #0d0e12;
+    --obsidian: #15181e;
+    /* Texto y líneas */
+    --chalk: #efeff1;
+    --graphite: #b2b6bd;
+    --ash: #656a76;
+    --steel: #3b3d45;
+    --fog: #d5d7db;
+    /* Marca AXENTRA: única señal de color */
+    --brand: #0056ff;
+    --brand-light: #2b89ff;
+    --cyan: #00c4e0;
+    --glow: linear-gradient(-45deg, #0056ff, #00c4e0);
+
+    --font-display: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    --radius: 4px;
+    --radius-card: 8px;
+    --shadow: rgba(97, 104, 117, 0.05) 0 1px 1px 0, rgba(97, 104, 117, 0.05) 0 2px 2px 0;
+    --max: 1200px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--void);
+    color: var(--chalk);
+    font: 400 16px/1.69 var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--brand-light); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.01em; margin: 0; font-feature-settings: "kern"; }
+  h1 { font-size: clamp(40px, 7vw, 76px); line-height: 1.12; font-weight: 700; }
+  h2 { font-size: clamp(30px, 4.2vw, 42px); line-height: 1.18; font-weight: 700; }
+  h3 { font-size: 19px; line-height: 1.35; font-weight: 600; }
+  p { margin: 0; }
+  .muted { color: var(--graphite); }
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--graphite); display: block; margin-bottom: 16px;
+  }
+
+  /* Botones */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font: 600 15px/1.2 var(--font-body);
+    padding: 12px 20px; border-radius: var(--radius); border: 1px solid transparent;
+    cursor: pointer; transition: background .15s, border-color .15s, color .15s;
+  }
+  .btn:hover { text-decoration: none; }
+  .btn-primary { background: var(--brand); color: #fff; }
+  .btn-primary:hover { background: #1f6bff; }
+  .btn-ghost { background: transparent; color: var(--chalk); border-color: var(--chalk); box-shadow: var(--shadow); font-weight: 500; }
+  .btn-ghost:hover { border-color: var(--brand-light); color: var(--brand-light); }
+
+  /* Navegación */
+  header.nav {
+    position: fixed; inset: 0 0 auto 0; z-index: 50; height: 64px;
+    transition: background .2s, border-color .2s;
+    border-bottom: 1px solid transparent;
+  }
+  header.nav.solid { background: var(--onyx); border-bottom-color: var(--obsidian); box-shadow: var(--shadow); }
+  .nav .wrap { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .nav .logo img { height: 26px; width: auto; }
+  .nav nav { display: flex; align-items: center; gap: 28px; }
+  .nav nav a { color: var(--graphite); font-size: 15px; font-weight: 500; }
+  .nav nav a:hover { color: var(--chalk); text-decoration: none; }
+  .nav .btn { padding: 9px 16px; }
+  .menu-toggle { display: none; background: none; border: 1px solid var(--steel); color: var(--chalk); border-radius: var(--radius); padding: 6px 10px; font-size: 18px; }
+
+  /* Portada */
+  .hero { position: relative; overflow: hidden; padding: 152px 0 112px; }
+  .hero::before {
+    content: ""; position: absolute; width: 900px; height: 900px; right: -260px; top: -220px;
+    background: radial-gradient(closest-side, rgba(0, 86, 255, 0.35), rgba(0, 196, 224, 0.12) 55%, transparent 75%);
+    pointer-events: none;
+  }
+  .hero .wrap { position: relative; display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 64px; align-items: center; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    font-size: 14px; color: var(--fog); margin-bottom: 28px;
+  }
+  .tag {
+    font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--chalk); border: 1px solid var(--cyan); background: rgba(0, 196, 224, 0.12);
+    padding: 3px 8px; border-radius: var(--radius);
+  }
+  .hero p.lead { font-size: 18px; color: var(--graphite); max-width: 620px; margin: 24px 0 36px; }
+  .hero .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-mark { position: relative; justify-self: center; width: min(360px, 80%); }
+  .hero-mark::after {
+    content: ""; position: absolute; left: 10%; right: 10%; bottom: -36px; height: 40px;
+    background: radial-gradient(closest-side, rgba(0, 196, 224, 0.45), transparent); filter: blur(8px);
+  }
+  .hero-mark img { filter: drop-shadow(0 0 40px rgba(0, 86, 255, 0.45)); }
+
+  /* Franja de capacidades */
+  .band { border-top: 1px solid var(--obsidian); border-bottom: 1px solid var(--obsidian); padding: 28px 0; }
+  .band .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .band .eyebrow { margin: 0; }
+  .band ul { list-style: none; display: flex; gap: 40px; flex-wrap: wrap; margin: 0; padding: 0; }
+  .band li { font-family: var(--font-display); font-weight: 600; color: var(--fog); font-size: 15px; }
+
+  /* Secciones */
+  section.block { padding: 96px 0; }
+  section.alt { background: var(--onyx); }
+  .head { max-width: 720px; margin-bottom: 48px; }
+  .head p { margin-top: 16px; color: var(--graphite); }
+
+  .grid { display: grid; gap: 16px; }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .card {
+    background: var(--onyx); border: 1px solid var(--obsidian); border-radius: var(--radius-card);
+    padding: 28px; transition: border-color .15s;
+  }
+  section.alt .card { background: var(--void); }
+  .card:hover { border-color: var(--steel); }
+  .card .num { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: 0.1em; color: var(--cyan); margin-bottom: 12px; display: block; }
+  .card h3 { margin-bottom: 10px; }
+  .card p { color: var(--graphite); font-size: 15px; }
+  .card ul { margin: 16px 0 0; padding: 0; list-style: none; color: var(--graphite); font-size: 15px; }
+  .card li { padding-left: 18px; position: relative; margin: 6px 0; }
+  .card li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 8px; height: 1px; background: var(--brand-light); }
+
+  /* Pasos */
+  .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; counter-reset: paso; }
+  .step { border-top: 2px solid var(--steel); padding-top: 20px; }
+  .step:first-child { border-top-color: var(--brand); }
+  .step h3 { margin-bottom: 8px; }
+  .step p { color: var(--graphite); font-size: 15px; }
+
+  /* Equipo */
+  .person { display: flex; gap: 20px; align-items: flex-start; }
+  .avatar {
+    flex: none; width: 64px; height: 64px; border-radius: var(--radius-card);
+    display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 22px;
+    color: #fff; background: var(--glow);
+  }
+  .person .role { color: var(--cyan); font-size: 14px; margin: 2px 0 10px; }
+
+  /* Contacto */
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+  form .field { margin-bottom: 16px; }
+  label { display: block; font-size: 14px; color: var(--fog); margin-bottom: 6px; font-weight: 500; }
+  input, select, textarea {
+    width: 100%; background: var(--onyx); color: var(--chalk);
+    border: 1px solid var(--steel); border-radius: var(--radius);
+    padding: 11px 14px; font: 400 16px/1.4 var(--font-body);
+    box-shadow: rgba(97, 104, 117, 0.1) 0 1px 2px 1px inset;
+  }
+  section.alt input, section.alt select, section.alt textarea { background: var(--void); }
+  input::placeholder, textarea::placeholder { color: var(--ash); }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--brand-light); }
+  textarea { min-height: 120px; resize: vertical; }
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .hp { position: absolute; left: -9999px; }
+  .form-msg { margin-top: 14px; font-size: 15px; }
+  .channels { list-style: none; padding: 0; margin: 28px 0 0; }
+  .channels li { padding: 14px 0; border-bottom: 1px solid var(--obsidian); color: var(--graphite); }
+  .channels strong { color: var(--chalk); font-weight: 600; display: block; font-size: 14px; }
+
+  footer { border-top: 1px solid var(--obsidian); padding: 40px 0; color: var(--ash); font-size: 14px; }
+  footer .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+  footer img { height: 22px; width: auto; opacity: 0.85; }
+
+  .wa {
+    position: fixed; right: 20px; bottom: 20px; z-index: 60; width: 56px; height: 56px; border-radius: 50%;
+    background: #25d366; display: grid; place-items: center; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    transition: transform .15s;
+  }
+  .wa:hover { transform: scale(1.06); }
+  .wa svg { width: 30px; height: 30px; fill: #fff; }
+
+  @media (max-width: 960px) {
+    .hero .wrap, .contact { grid-template-columns: 1fr; }
+    .hero-mark { display: none; }
+    .grid-3 { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .menu-toggle { display: block; }
+    .nav nav {
+      display: none; position: absolute; top: 64px; left: 0; right: 0; flex-direction: column; align-items: stretch;
+      gap: 0; background: var(--onyx); border-bottom: 1px solid var(--obsidian); padding: 8px 16px 16px;
+    }
+    .nav nav.open { display: flex; }
+    .nav nav a { padding: 12px 0; }
+    header.nav:has(nav.open) { background: var(--onyx); }
+    .wrap { padding: 0 16px; }
+    .grid-2, .grid-3, .steps, .row-2 { grid-template-columns: 1fr; }
+    .hero { padding: 120px 0 72px; }
+    section.block { padding: 72px 0; }
+    .band ul { gap: 20px; }
+  }
 </style>
 </head>
 <body>
-<img src="en-construccion.webp" alt="AXENTRA AI · Página en construcción" width="2000" height="714">
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a class="logo" href="#inicio" aria-label="AXENTRA IA, inicio"><img src="img/logo-axentra.png" alt="AXENTRA IA" width="1714" height="271"></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+    <nav id="menu">
+      <a href="#servicios">Servicios</a>
+      <a href="#como-trabajamos">Cómo trabajamos</a>
+      <a href="#nosotros">Nosotros</a>
+      <a class="btn btn-primary" href="#contacto">Hablemos</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <div>
+        <div class="pill"><span class="tag">Partner de Odoo</span> Implementación de Odoo con localización paraguaya</div>
+        <h1>Gestión, datos e inteligencia artificial para su empresa</h1>
+        <p class="lead">Implementamos su sistema de gestión, convertimos sus datos en decisiones y sumamos agentes de inteligencia artificial y robótica a su operación.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#contacto">Hablemos →</a>
+          <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+        </div>
+      </div>
+      <div class="hero-mark" aria-hidden="true"><img src="img/simbolo-axentra.png" alt="" width="369" height="271"></div>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="wrap">
+      <span class="eyebrow">Lo que hacemos</span>
+      <ul>
+        <li>Implementación Odoo</li>
+        <li>Inteligencia de negocios</li>
+        <li>Agentes de IA</li>
+        <li>Robótica y automatización</li>
+      </ul>
+    </div>
+  </div>
+
+  <section class="block" id="servicios">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Servicios</span>
+        <h2>Del sistema de gestión a la inteligencia artificial, con un mismo equipo</h2>
+        <p>Cuatro áreas que trabajan juntas para ordenar y potenciar su empresa.</p>
+      </div>
+      <div class="grid grid-2">
+        <article class="card">
+          <span class="num">01</span>
+          <h3>Implementación Odoo</h3>
+          <p>Ponemos en marcha su sistema de gestión completo sobre Odoo.sh.</p>
+          <ul>
+            <li>Relevamiento de procesos y diseño de la solución.</li>
+            <li>Contabilidad, facturación, ventas, compras, inventario, CRM y empleados.</li>
+            <li>Localización paraguaya: plan de cuentas, IVA 10 % y 5 %, RG 90, timbrados y retenciones.</li>
+            <li>Migración de clientes, proveedores, productos, stock y saldos.</li>
+            <li>Capacitación, puesta en marcha y soporte mensual.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="num">02</span>
+          <h3>Inteligencia de negocios</h3>
+          <p>Sus datos, ordenados y a la vista, para que cada decisión tenga respaldo.</p>
+          <ul>
+            <li>Tableros de gestión para la dirección y cada área.</li>
+            <li>Indicadores de ventas, márgenes, cobranzas y flujo de caja.</li>
+            <li>Integración de datos de distintos sistemas y planillas.</li>
+            <li>Reportes automáticos y calidad de datos.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="num">03</span>
+          <h3>Agentes de inteligencia artificial</h3>
+          <p>Inteligencia artificial aplicada al trabajo diario de su empresa.</p>
+          <ul>
+            <li>Asistentes de atención por WhatsApp y por la web.</li>
+            <li>Lectura automática de facturas, contratos y documentos.</li>
+            <li>Agentes que consultan y cargan información en su sistema.</li>
+            <li>Automatización de tareas administrativas repetitivas.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <span class="num">04</span>
+          <h3>Robótica y automatización</h3>
+          <p>Menos tareas manuales, más tiempo para lo importante.</p>
+          <ul>
+            <li>Automatización de procesos repetitivos.</li>
+            <li>Integración de equipos y sensores con sus sistemas.</li>
+            <li>Proyectos de robótica a medida de su operación.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="por-que">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Por qué AXENTRA</span>
+        <h2>Tecnología que se usa de verdad en el día a día</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card"><h3>Partner de Odoo</h3><p>Trabajamos con Odoo 20 sobre Odoo.sh, con ambientes de desarrollo, pruebas y producción separados.</p></div>
+        <div class="card"><h3>Equipo paraguayo</h3><p>Conocemos la normativa tributaria local y la forma de trabajar de las empresas del país.</p></div>
+        <div class="card"><h3>Experiencia en datos</h3><p>Más de diez años en plataformas de datos, integración de sistemas e inteligencia de negocios.</p></div>
+        <div class="card"><h3>Por etapas y con entregables</h3><p>Cada etapa termina con algo concreto funcionando, que usted revisa y aprueba.</p></div>
+        <div class="card"><h3>Soporte cercano</h3><p>Lo acompañamos después de la puesta en marcha, con un plan mensual de soporte y mejoras.</p></div>
+        <div class="card"><h3>Desde cualquier lugar</h3><p>Su sistema en la computadora, la tableta o el celular, con la aplicación de Odoo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="como-trabajamos">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Cómo trabajamos</span>
+        <h2>Un camino claro, por etapas</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><span class="eyebrow">Paso 1</span><h3>Relevamiento</h3><p>Conocemos sus procesos, sus datos y lo que necesita resolver.</p></div>
+        <div class="step"><span class="eyebrow">Paso 2</span><h3>Diseño</h3><p>Definimos la solución, las etapas y lo que se entrega en cada una.</p></div>
+        <div class="step"><span class="eyebrow">Paso 3</span><h3>Implementación</h3><p>Configuramos, migramos los datos y probamos con usted.</p></div>
+        <div class="step"><span class="eyebrow">Paso 4</span><h3>Puesta en marcha</h3><p>Capacitamos a su equipo y lo acompañamos en el arranque.</p></div>
+        <div class="step"><span class="eyebrow">Paso 5</span><h3>Mejora continua</h3><p>Soporte mensual y nuevas funciones a medida que su empresa crece.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="nosotros">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Nosotros</span>
+        <h2>Una empresa paraguaya de tecnología</h2>
+        <p>AXENTRA implementa sistemas de gestión, inteligencia de negocios, agentes de inteligencia artificial y soluciones de robótica para empresas. Combinamos experiencia en datos, en gestión empresarial y en docencia para que cada implementación se entienda, se use y dé resultados medibles.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="card person">
+          <div class="avatar" aria-hidden="true">AR</div>
+          <div>
+            <h3>Alcides Rolón</h3>
+            <p class="role">Director General y de Tecnología</p>
+            <p>Ingeniero de datos con más de diez años en plataformas de datos, integración de sistemas e inteligencia de negocios. Licenciado en Ciencias Informáticas (UNA) y MBA (Universidad Americana).</p>
+          </div>
+        </div>
+        <div class="card person">
+          <div class="avatar" aria-hidden="true">JS</div>
+          <div>
+            <h3>Dr. José Osmar Samaniego</h3>
+            <p class="role">Director de Consultoría Funcional y Capacitación</p>
+            <p>Doctor en Administración de Empresas y MBA, docente universitario de administración y contabilidad desde 2012 y especialista en inteligencia artificial aplicada a procesos administrativos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="contacto">
+    <div class="wrap contact">
+      <div>
+        <span class="eyebrow">Contacto</span>
+        <h2>¿Conversamos sobre su empresa?</h2>
+        <p class="muted" style="margin-top:16px">Cuéntenos qué necesita y le proponemos un camino claro, por etapas y con entregables concretos.</p>
+        <ul class="channels">
+          <li><strong>WhatsApp</strong><a href="https://wa.me/595985407809" target="_blank" rel="noopener">+595 985 407 809</a></li>
+          <li><strong>Ubicación</strong>Asunción, Paraguay</li>
+        </ul>
+      </div>
+      <form id="contactForm" novalidate>
+        <!-- Web3Forms: pegar acá la clave de acceso (la manda Web3Forms al correo que recibe las consultas).
+             Mientras quede "PENDIENTE", el formulario abre WhatsApp con el mensaje armado. -->
+        <input type="hidden" name="access_key" value="PENDIENTE">
+        <input type="hidden" name="subject" value="Nueva consulta desde el sitio de AXENTRA">
+        <input type="hidden" name="from_name" value="Sitio web AXENTRA">
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+        <div class="row-2">
+          <div class="field"><label for="nombre">Nombre y apellido *</label><input id="nombre" name="nombre" required autocomplete="name"></div>
+          <div class="field"><label for="empresa">Empresa</label><input id="empresa" name="empresa" autocomplete="organization"></div>
+        </div>
+        <div class="row-2">
+          <div class="field"><label for="email">Correo electrónico *</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+          <div class="field"><label for="telefono">Teléfono o WhatsApp</label><input id="telefono" name="telefono" type="tel" autocomplete="tel"></div>
+        </div>
+        <div class="field">
+          <label for="servicio">¿Qué necesita? *</label>
+          <select id="servicio" name="servicio" required>
+            <option value="">Elija una opción</option>
+            <option>Implementación Odoo</option>
+            <option>Inteligencia de negocios</option>
+            <option>Agentes de IA</option>
+            <option>Robótica y automatización</option>
+            <option>Otro</option>
+          </select>
+        </div>
+        <div class="field"><label for="mensaje">Mensaje *</label><textarea id="mensaje" name="mensaje" required placeholder="Cuéntenos brevemente sobre su empresa y lo que necesita"></textarea></div>
+        <button class="btn btn-primary" type="submit" id="enviar">Enviar consulta</button>
+        <p class="form-msg" id="formMsg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <img src="img/logo-axentra.png" alt="AXENTRA IA" width="1714" height="271">
+    <span>© <span id="anio">2026</span> AXENTRA · Asunción, Paraguay</span>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/595985407809" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C8.8 3 3 8.7 3 15.8c0 2.3.6 4.5 1.8 6.4L3 29l7-1.8c1.8 1 3.9 1.5 6 1.5 7.2 0 13-5.7 13-12.8S23.2 3 16 3zm0 23.4c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.1 1.1-4-.3-.4c-1.1-1.7-1.6-3.6-1.6-5.6C5.3 10 10.1 5.3 16 5.3S26.7 10 26.7 15.8 21.9 26.4 16 26.4zm5.9-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1c-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-1.9-1.8-2.2s0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4s-1.2 1.1-1.2 2.7 1.2 3.1 1.4 3.4c.2.2 2.3 3.5 5.6 4.9 2.8 1.1 3.3.9 3.9.8s1.9-.8 2.2-1.5.3-1.3.2-1.5c-.1-.1-.3-.2-.6-.3z"/></svg>
+</a>
+
+<script>
+  // Barra superior: transparente sobre la portada, sólida al bajar
+  var nav = document.getElementById('nav');
+  function onScroll() { nav.classList.toggle('solid', window.scrollY > 24); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  // Menú en celular
+  var toggle = document.getElementById('menuToggle'), menu = document.getElementById('menu');
+  toggle.addEventListener('click', function () {
+    var open = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  menu.addEventListener('click', function (e) { if (e.target.tagName === 'A') { menu.classList.remove('open'); toggle.setAttribute('aria-expanded', false); } });
+
+  document.getElementById('anio').textContent = new Date().getFullYear();
+
+  // Formulario de contacto
+  var form = document.getElementById('contactForm'), msg = document.getElementById('formMsg'), btn = document.getElementById('enviar');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var d = new FormData(form);
+    if (d.get('access_key') === 'PENDIENTE') {
+      var texto = 'Hola AXENTRA, soy ' + d.get('nombre') + (d.get('empresa') ? ' de ' + d.get('empresa') : '') +
+        '. Me interesa: ' + d.get('servicio') + '. ' + d.get('mensaje') + ' (Correo: ' + d.get('email') + ')';
+      window.open('https://wa.me/595985407809?text=' + encodeURIComponent(texto), '_blank', 'noopener');
+      msg.style.color = 'var(--graphite)'; msg.textContent = 'Abrimos WhatsApp con su mensaje listo para enviar.';
+      return;
+    }
+    btn.disabled = true; btn.textContent = 'Enviando…';
+    fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Accept': 'application/json' }, body: d })
+      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        if (!r.success) throw new Error(r.message);
+        form.reset(); msg.style.color = 'var(--cyan)';
+        msg.textContent = '¡Gracias por escribirnos! Le vamos a responder a la brevedad.';
+      })
+      .catch(function () {
+        msg.style.color = '#ff8791';
+        msg.innerHTML = 'No pudimos enviar su consulta. Escríbanos por <a href="https://wa.me/595985407809" target="_blank" rel="noopener">WhatsApp</a>.';
+      })
+      .finally(function () { btn.disabled = false; btn.textContent = 'Enviar consulta'; });
+  });
+</script>
 </body>
 </html>
