@@ -1,6 +1,4 @@
 /* ================= ¿Qué es Odoo?, Equipo y Preguntas ================= */
-.etiqueta.con-numero { counter-increment: seccion; display: inline-flex; align-items: center; gap: 10px; }
-.etiqueta.con-numero::before { content: counter(seccion, decimal-leading-zero); font: 800 .8rem var(--titulos); letter-spacing: 0; padding-right: 10px; border-right: 1.5px solid currentColor; }
 
 /* ¿Qué es Odoo? */
 .odoo-cabeza { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 52px; align-items: center; }

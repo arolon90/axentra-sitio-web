@@ -30,14 +30,7 @@ a { color: var(--azul); }
 header { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.96); backdrop-filter: blur(6px); border-bottom: 1px solid var(--borde); }
 header .contenedor { display: flex; align-items: center; justify-content: space-between; height: 70px; }
 header img { height: 30px; display: block; }
-nav { display: flex; gap: 26px; align-items: center; }
-nav a { color: var(--texto); text-decoration: none; font-weight: 500; font-size: .95rem; white-space: nowrap; }
-nav a:hover { color: var(--azul); }
-nav .boton { padding: 9px 16px; font-size: .9rem; }
-nav { margin-left: 32px; }
-@media (max-width: 1400px) { nav { gap: 20px; } nav a { font-size: .91rem; } }
-@media (max-width: 1240px) { nav { gap: 15px; margin-left: 20px; } nav a { font-size: .86rem; } nav .boton { padding: 8px 13px; } }
-@media (max-width: 1120px) { nav a:not(.boton) { display: none; } }
+/* el menú de arriba se arma en js/marco.js y su diseño está en css/16-marco-paginas.css */
 
 /* Portada */
 .portada { background: radial-gradient(1200px 500px at 85% -10%, rgba(0,196,224,.28), transparent 60%), linear-gradient(135deg, var(--marino) 0%, var(--marino-2) 60%, #0b3a78 100%); color: #fff; overflow: hidden; position: relative; }

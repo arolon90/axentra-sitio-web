@@ -14,7 +14,7 @@
   }).join('');
   var iaEq = d.asistente;
   if (iaEq && iaEq.visible !== false) {
-    personas += '<a class="persona persona-ia" href="#asistente" style="--c:#7c5cff">' + ficha('', '', iaEq.logo ? '<img src="' + esc(iaEq.logo) + '" alt="">' : icono('i:microfono'),
+    personas += '<a class="persona persona-ia" href="arandu-ai.html" style="--c:#7c5cff">' + ficha('', '', iaEq.logo ? '<img src="' + esc(iaEq.logo) + '" alt="">' : icono('i:microfono'),
       esc(iaEq.nombre), 'Asistente de inteligencia artificial de AXENTRA', null, '<p class="persona-bio">Escucha las entrevistas de relevamiento, las transcribe y arma los borradores de las fichas de procesos.</p><span class="ver-mas">Conocelo →</span>') + '</a>';
   }
   var htmlSocios = personas.split('<a class="persona persona-ia"')[0], cajaSocios = document.getElementById('lista-equipo');

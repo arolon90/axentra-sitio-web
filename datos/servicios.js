@@ -5,7 +5,7 @@ Object.assign(window.SITIO, {
 
   /* tamano: "grande" (2 × 2, oscura), "ancho" (2 columnas) o vacío · visual: "chips", "barras" o "rubros" (opcional) */
   servicios: [
-    { icono: "i:normativa", tamano: "grande", visual: "chips", titulo: "Normativa DNIT y SIFEN", enlace: "#normativa", visible: true,
+    { icono: "i:normativa", tamano: "grande", visual: "chips", titulo: "Normativa DNIT y SIFEN", enlace: "dnit-sifen.html", visible: true,
       texto: "Contabilidad, declaraciones, facturación electrónica e-Kuatia y firma digital en Odoo, según la normativa paraguaya.",
       chips: ["Plan de cuentas DNIT", "IVA 10 % y 5 %", "Formulario 120", "RG 90", "e-Kuatia", "KuDE con QR", "Firma digital"] },
     { icono: "i:personas", color: "#ea580c", titulo: "RRHH y nómina paraguaya", visible: true,

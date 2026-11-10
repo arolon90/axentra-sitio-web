@@ -11,10 +11,10 @@ a:focus-visible, .boton:focus-visible, button:focus-visible, input:focus-visible
   outline: 3px solid var(--celeste); outline-offset: 3px; }
 
 /* Menú: subrayado animado */
-nav a:not(.boton) { position: relative; }
-nav a:not(.boton)::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px;
+.menu > a:not(.boton) { position: relative; }
+.menu > a:not(.boton)::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px;
   background: linear-gradient(90deg, var(--azul), var(--celeste)); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
-nav a:not(.boton):hover::after { transform: scaleX(1); }
+.menu > a:not(.boton):hover::after, .menu > a.activo::after { transform: scaleX(1); }
 
 /* Tarjetas: se levantan, se resalta el borde y una luz sigue al mouse */
 .efecto-luz { position: relative; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease; }

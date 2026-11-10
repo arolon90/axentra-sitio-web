@@ -6,7 +6,17 @@ Object.assign(window.SITIO, {
   contacto: {
     whatsapp: "595985407809",            // número con código de país, sin + ni espacios (hoy: José, 0985 407 809)
     correo: "contacto@axentra-ai.com.py",
-    ciudad: "Asunción, Paraguay"
+    ciudad: "Asunción, Paraguay",
+    /* motivos del formulario de contacto: los botones de cada página llegan con ?motivo=<clave> y queda elegido */
+    motivos: [
+      { clave: "diagnostico", texto: "Un diagnóstico de mi empresa" },
+      { clave: "implementacion", texto: "Implementar Odoo" },
+      { clave: "consultoria", texto: "Consultoría y procesos" },
+      { clave: "automatizacion", texto: "IA y automatizaciones" },
+      { clave: "dnit", texto: "Normativa DNIT y SIFEN" },
+      { clave: "arandu", texto: "Arandu AI" },
+      { clave: "otro", texto: "Otra consulta" }
+    ]
   },
 
 
