@@ -4,19 +4,7 @@
 .dnit-lista li::before { content: ""; position: absolute; left: 1px; top: .32em; width: 9px; height: 5px; border-left: 2px solid var(--celeste); border-bottom: 2px solid var(--celeste); transform: rotate(-45deg); }
 .dnit-enlace { display: inline-flex; margin-top: 10px; font-size: .88rem; font-weight: 700; color: var(--celeste); text-decoration: none; border-bottom: 1.5px solid rgba(0, 196, 224, .4); transition: border-color .2s ease, color .2s ease; }
 .dnit-enlace:hover { color: #fff; border-color: #fff; }
-.dnit-banda { display: flex; align-items: center; gap: 22px; margin-top: 48px; padding: 24px 28px; border-radius: 24px; border: 1px solid transparent;
-  background: linear-gradient(120deg, #0b2a55, #0d3570) padding-box, linear-gradient(100deg, rgba(0, 196, 224, .8), rgba(0, 86, 255, .25) 45%, rgba(124, 92, 255, .7)) border-box;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, .25); }
-.banda-ico { flex: none; width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, var(--azul), var(--celeste)); box-shadow: 0 0 0 8px rgba(0, 196, 224, .12); }
-.banda-ico svg { width: 28px; height: 28px; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; animation: girarBanda 9s linear infinite; }
-@keyframes girarBanda { to { transform: rotate(360deg); } }
-.banda-texto { flex: 1; min-width: 0; }
-.banda-texto b { display: block; font: 700 1.2rem var(--titulos); color: #fff; margin-bottom: 2px; }
-.banda-texto span { color: #b9c7da; font-size: .95rem; }
-.dnit-banda .boton { flex: none; }
-@media (max-width: 760px) { .dnit-banda { flex-direction: column; align-items: flex-start; padding: 22px; } .dnit-banda .boton { width: 100%; justify-content: center; } }
 @media (max-width: 640px) { .dnit-lista { display: none; } }
-@media (prefers-reduced-motion: reduce) { .banda-ico svg { animation: none; } }
 #clientes.sin-pestanas .carrusel { margin-top: 40px; }
 .caso-flujo { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0 6px; position: relative; padding-top: 16px; }
 .caso-flujo::before { content: ""; position: absolute; top: 21px; left: 12.5%; right: 12.5%; height: 2px; background: color-mix(in srgb, var(--c) 22%, var(--borde)); }
