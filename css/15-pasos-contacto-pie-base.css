@@ -1,0 +1,21 @@
+/* Pasos */
+.seccion#como-trabajamos .paso { background: #fff; }
+.pasos { counter-reset: paso; display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); margin-top: 40px; }
+.paso { position: relative; padding: 24px 22px 22px; border-radius: 16px; background: #fff; border: 1px solid var(--borde); }
+.paso::before { counter-increment: paso; content: counter(paso); position: absolute; top: -14px; left: 22px; width: 30px; height: 30px; border-radius: 50%; background: var(--azul); color: #fff; display: grid; place-items: center; font: 700 .9rem var(--titulos); }
+.paso p { color: var(--suave); font-size: .93rem; margin: 0; }
+
+/* Contacto */
+.contacto { background: linear-gradient(135deg, var(--azul), #0040c0); color: #fff; text-align: center; }
+.contacto h2 { color: #fff; }
+.contacto p { color: #dbe6ff; max-width: 640px; margin: 0 auto 28px; font-size: 1.08rem; }
+.contacto .acciones { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+.contacto .boton.blanco { background: #fff; color: var(--azul); }
+
+footer { background: var(--marino); color: #9fb3cc; padding: 40px 0; font-size: .9rem; }
+footer .contenedor { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+footer img { height: 26px; }
+
+/* Enlace al panel de administración */
+.pie-ingresar { color: #8fa3bd; text-decoration: none; border-bottom: 1px dotted rgba(143, 163, 189, .6); }
+.pie-ingresar:hover { color: var(--celeste); }

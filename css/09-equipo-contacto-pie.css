@@ -1,0 +1,82 @@
+/* ================= Equipo: frase por persona · Contacto y pie de página nuevos ================= */
+.persona-bio { margin: 8px 0 0; font-size: .9rem; line-height: 1.5; color: var(--suave); max-width: 46ch; }
+.persona-ia .persona-bio { color: #c9c2ff; }
+.persona .avatar img { width: 100%; height: 100%; object-fit: cover; }
+.persona-ia .avatar { background: #06142b; }
+
+.seccion.contacto { text-align: left; color: #fff; position: relative; overflow: hidden;
+  background: radial-gradient(600px 400px at 0% 0%, rgba(0, 86, 255, .35), transparent 65%), radial-gradient(500px 380px at 100% 100%, rgba(0, 196, 224, .18), transparent 65%), #06142b; }
+.seccion.contacto::after { content: ""; position: absolute; right: -120px; bottom: -140px; width: 520px; height: 520px; background: url("../assets/axentra-x.png") no-repeat center / contain; opacity: .05; pointer-events: none; }
+.contacto-grilla { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.contacto h2 { color: #fff; }
+.contacto h2 em { color: var(--celeste); }
+.contacto .etiqueta { color: var(--celeste); }
+.contacto .intro, .contacto p.intro { color: #c9d6e8; margin: 0 0 26px; max-width: 520px; font-size: 1.05rem; }
+.contacto-pasos { list-style: none; margin: 0 0 28px; padding: 0; display: grid; gap: 0; justify-content: stretch; position: relative; }
+.contacto-pasos::before { content: ""; position: absolute; left: 17px; top: 20px; bottom: 20px; width: 2px; background: linear-gradient(var(--celeste), rgba(0, 196, 224, .1)); }
+.contacto-pasos li { position: relative; display: flex; gap: 16px; align-items: flex-start; padding: 10px 0; background: none; border: 0; border-radius: 0; font-weight: 400; color: #b9c7da; font-size: .93rem; }
+.contacto-pasos li b { display: block; color: #fff; font: 700 1rem var(--titulos); }
+.contacto-pasos span { flex: none; position: relative; z-index: 1; width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; color: #fff; font: 800 .95rem var(--titulos);
+  background: linear-gradient(135deg, var(--azul), var(--celeste)); box-shadow: 0 0 0 5px #06142b; }
+.contacto-directo { display: flex; gap: 12px; flex-wrap: wrap; }
+.contacto-directo a { display: flex; align-items: center; gap: 12px; padding: 12px 18px 12px 12px; border-radius: 16px; text-decoration: none; color: #fff;
+  background: rgba(255, 255, 255, .05); border: 1px solid rgba(255, 255, 255, .14); transition: background .25s ease, border-color .25s ease, transform .25s ease; }
+.contacto-directo a:hover { background: rgba(255, 255, 255, .1); border-color: rgba(0, 196, 224, .6); transform: translateY(-3px); }
+.contacto-directo small { display: block; font-size: .72rem; color: #9fb0c8; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; }
+.contacto-directo b { font-size: .98rem; }
+.cd-ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: linear-gradient(135deg, var(--azul), var(--celeste)); }
+.cd-ico.wa { background: #1fae54; }
+.cd-ico svg { width: 22px; height: 22px; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.cd-ico.wa svg { fill: #fff; stroke: none; }
+.contacto-form { max-width: none; margin: 0; padding: 28px; border-radius: 24px; background: #fff; color: var(--texto); box-shadow: 0 40px 90px rgba(0, 0, 0, .4); gap: 14px; }
+.cf-cabeza { grid-column: 1 / -1; margin-bottom: 4px; }
+.cf-cabeza b { display: block; font: 700 1.35rem var(--titulos); color: var(--marino); }
+.cf-cabeza span { color: var(--suave); font-size: .92rem; }
+.cf-campo { display: grid; gap: 6px; }
+.cf-campo.cf-ancho { grid-column: 1 / -1; }
+.cf-campo span { font-size: .8rem; font-weight: 700; color: var(--marino); }
+.contacto .formulario input, .contacto .formulario textarea { background: var(--gris); border: 1.5px solid var(--borde); border-radius: 12px; padding: 12px 14px; transition: border-color .2s ease, box-shadow .2s ease, background .2s ease; }
+.contacto .formulario input:focus, .contacto .formulario textarea:focus { background: #fff; border-color: var(--azul); box-shadow: 0 0 0 4px rgba(0, 86, 255, .15); outline: none; }
+.contacto-form .boton.whatsapp { margin-top: 4px; box-shadow: 0 12px 28px rgba(31, 174, 84, .35); }
+@media (max-width: 900px) { .contacto-grilla { grid-template-columns: 1fr; gap: 36px; } }
+@media (max-width: 560px) { .contacto-form { padding: 20px; } .contacto-form .cf-campo { grid-column: 1 / -1; } .contacto-directo a { flex: 1 1 100%; } }
+
+footer.pie { background: #020c1d; color: #8fa3bd; padding: 56px 0 0; font-size: .92rem; border-top: 1px solid transparent;
+  border-image: linear-gradient(90deg, transparent, rgba(0, 196, 224, .6), rgba(124, 92, 255, .5), transparent) 1; }
+.pie-grilla { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); gap: 40px; }
+footer.pie .pie-grilla { display: grid; justify-content: stretch; align-items: start; }
+.pie-marca img { height: 30px; }
+.pie-marca p { margin: 16px 0 14px; max-width: 380px; line-height: 1.6; }
+.pie-partner { display: inline-block; padding: 5px 12px; border-radius: 8px; font: 700 .72rem var(--titulos); letter-spacing: .08em; text-transform: uppercase; color: #d9c2d3; background: rgba(113, 75, 103, .25); border: 1px solid rgba(160, 110, 145, .45); }
+.pie-col { display: grid; gap: 9px; align-content: start; }
+.pie-col b { color: #fff; font: 700 .95rem var(--titulos); margin-bottom: 4px; }
+.pie-col a { color: #b9c7da; text-decoration: none; width: fit-content; transition: color .2s ease; }
+.pie-col a:hover { color: var(--celeste); }
+.pie-col .pie-boton { color: #fff; margin-top: 10px; padding: 10px 16px; font-size: .9rem; }
+footer.pie .pie-base { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 44px; padding: 20px 20px 26px; border-top: 1px solid rgba(255, 255, 255, .08); font-size: .82rem; color: #6f839d; }
+@media (max-width: 860px) { .pie-grilla { grid-template-columns: 1fr 1fr; } .pie-marca { grid-column: 1 / -1; } }
+@media (max-width: 520px) { .pie-grilla { grid-template-columns: 1fr; } }
+
+/* Fotos del equipo: más grandes y se agrandan al pasar el mouse */
+.equipo .avatar-anillo { width: 112px; height: 112px; transition: transform .35s cubic-bezier(.2, .8, .2, 1), box-shadow .35s ease; }
+.persona:hover .avatar-anillo { transform: scale(1.14); box-shadow: 0 14px 34px color-mix(in srgb, var(--c) 35%, transparent); }
+.persona:hover .avatar { transform: none; }
+.persona .avatar img { object-position: center 30%; }
+/* con foto: retrato vertical para que se vea la persona y el logo de la remera */
+.equipo .persona.con-foto .avatar-anillo { width: 124px; height: 156px; border-radius: 20px; padding: 3px; }
+.persona.con-foto .avatar { border-radius: 17px; border-width: 3px; }
+.persona.con-foto .avatar img { object-position: center; }
+.persona.con-foto:hover .avatar-anillo { transform: scale(1.1); }
+@media (max-width: 560px) { .equipo .persona.con-foto .avatar-anillo { width: 92px; height: 115px; } .persona.con-foto:hover .avatar-anillo { transform: scale(1.06); } }
+@media (max-width: 560px) { .equipo .avatar-anillo { width: 84px; height: 84px; } .persona:hover .avatar-anillo { transform: scale(1.08); } }
+
+/* CV breve de cada socio */
+.persona-cv { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 5px; }
+.persona-cv li { position: relative; padding-left: 16px; font-size: .86rem; line-height: 1.45; color: var(--suave); }
+.persona-cv li::before { content: ""; position: absolute; left: 0; top: .55em; width: 7px; height: 7px; border-radius: 2px; background: var(--c); transform: rotate(45deg); }
+.persona .rol { font-weight: 600; color: color-mix(in srgb, var(--c) 70%, #001f40); }
+.persona.con-foto { align-items: flex-start; }
+.persona-cv li.destacada { font-weight: 400; }
+.persona-esp2 { display: block; margin-top: 2px; font-style: normal; font-weight: 700; font-size: .88rem; color: var(--marino); }
+.persona.persona-ia .rol { color: #c9c2ff; font-weight: 400; }
+@media (max-width: 560px) { .persona-cv li { font-size: .82rem; } }

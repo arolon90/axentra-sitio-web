@@ -1,0 +1,44 @@
+/* ================= Efectos de alto impacto ================= */
+/* Botones: contraste fuerte al pasar el mouse */
+.boton { transition: transform .2s ease, box-shadow .25s ease, background .25s ease, color .2s ease, border-color .2s ease; position: relative; }
+.boton.primario:hover { background: linear-gradient(100deg, var(--azul), var(--celeste)); box-shadow: 0 14px 34px rgba(0, 196, 224, .5); transform: translateY(-3px) scale(1.03); }
+.boton.secundario:hover { background: #fff; color: var(--marino); border-color: #fff; box-shadow: 0 12px 30px rgba(255,255,255,.25); transform: translateY(-3px); }
+.boton.contorno:hover { background: var(--azul); color: #fff; border-color: var(--azul); box-shadow: 0 12px 28px rgba(0, 86, 255, .35); transform: translateY(-3px); }
+.boton.blanco:hover { background: var(--marino); color: #fff; box-shadow: 0 14px 34px rgba(0, 31, 64, .45); transform: translateY(-3px); }
+.boton.whatsapp:hover { background: #128c3f; box-shadow: 0 14px 34px rgba(31, 174, 84, .5); transform: translateY(-3px) scale(1.03); }
+.boton:active { transform: translateY(0) scale(.98); }
+a:focus-visible, .boton:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+  outline: 3px solid var(--celeste); outline-offset: 3px; }
+
+/* Menú: subrayado animado */
+nav a:not(.boton) { position: relative; }
+nav a:not(.boton)::after { content: ""; position: absolute; left: 0; right: 0; bottom: -6px; height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--azul), var(--celeste)); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+nav a:not(.boton):hover::after { transform: scaleX(1); }
+
+/* Tarjetas: se levantan, se resalta el borde y una luz sigue al mouse */
+.efecto-luz { position: relative; overflow: hidden; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease; }
+.efecto-luz::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .25s ease;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(0, 86, 255, .12), transparent 60%); }
+.efecto-luz:hover::before { opacity: 1; }
+.efecto-luz:hover { transform: translateY(-6px); box-shadow: 0 22px 46px rgba(0, 31, 64, .16); border-color: rgba(0, 86, 255, .45); }
+.normativa .efecto-luz::before { background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), rgba(0, 196, 224, .22), transparent 60%); }
+.normativa .efecto-luz:hover { background: rgba(255,255,255,.1); border-color: rgba(0, 196, 224, .7); box-shadow: 0 22px 46px rgba(0, 0, 0, .35); }
+.contacto .formulario input, .contacto .formulario textarea { transition: box-shadow .2s ease; }
+.contacto .formulario input:focus, .contacto .formulario textarea:focus { box-shadow: 0 0 0 4px rgba(255,255,255,.45); outline: none; }
+.marco { transition: transform .3s ease, box-shadow .3s ease; }
+.pantalla:hover .marco { transform: translateY(-6px) scale(1.015); box-shadow: 0 34px 80px rgba(0, 31, 64, .25); }
+.sello-logo { transition: transform .2s ease; } .sello-logo:hover { transform: translateY(-3px) scale(1.05); }
+
+/* Portada: título con brillo que se mueve y notebook flotando */
+.portada h1 span { background-size: 200% auto; animation: brillo 6s linear infinite; background-image: linear-gradient(90deg, var(--celeste), #7fb0ff, var(--celeste)); }
+@keyframes brillo { to { background-position: 200% center; } }
+.notebook { animation: flotar 6s ease-in-out infinite; }
+@keyframes flotar { 0%, 100% { translate: 0 0; } 50% { translate: 0 -12px; } }
+.x-sello { animation: flotar 5s ease-in-out infinite reverse; transition: transform .3s ease; }
+.x-sello:hover { transform: rotate(-4deg) scale(1.08); }
+
+/* Aparición al bajar por la página */
+.revelar { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s ease; }
+.revelar.visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .revelar { opacity: 1; transform: none; } .notebook, .x-sello, .portada h1 span { animation: none; } }

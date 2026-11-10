@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 404 132" role="img" aria-label="Odoo">
+  <g fill="none" stroke-width="19">
+    <circle cx="48" cy="83" r="37.5" stroke="#a24689"/>
+    <circle cx="150" cy="83" r="37.5" stroke="#8f8f8f"/>
+    <circle cx="252" cy="83" r="37.5" stroke="#8f8f8f"/>
+    <circle cx="354" cy="83" r="37.5" stroke="#8f8f8f"/>
+  </g>
+  <path d="M187.5 83V12" stroke="#8f8f8f" stroke-width="19" stroke-linecap="round" fill="none"/>
+</svg>

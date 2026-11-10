@@ -1,0 +1,54 @@
+/* Arandu AI: mapa del relevamiento estilo grafo de conocimiento */
+.grafo-oscuro { position: relative; flex: 1; min-height: 0; display: flex; align-items: center; margin: 4px -4px 0; border-radius: 16px; overflow: hidden;
+  background: radial-gradient(70% 60% at 50% 45%, #18233a, #0b1220 70%, #070c16); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06); }
+.ia-panel .grafo-oscuro svg.ia-grafo { width: 100%; height: 100%; margin: 0; }
+.gf-polvo { fill: #3a4660; }
+.gf-hilo { stroke: #232f47; stroke-width: .5; }
+.gf-l { stroke: var(--c); stroke-width: .6; opacity: .28; transition: opacity .35s ease, stroke-width .35s ease; }
+.gf-t circle { fill: var(--c); opacity: .85; transition: opacity .35s ease, r .35s ease; }
+.gf-t.comun circle { fill: #fff; stroke: #f472b6; stroke-width: 1.2; filter: drop-shadow(0 0 3px rgba(244, 114, 182, .8)); }
+.gf-t text { font: 600 5.6px var(--cuerpo); fill: #cbd5e1; opacity: 0; transition: opacity .35s ease; pointer-events: none; }
+.gf-t text:not(.lado) { text-anchor: middle; }
+.gf-t.comun text { opacity: .9; fill: #fbcfe8; font-weight: 700; }
+.gf-t { cursor: pointer; }
+.gf-h { cursor: pointer; outline: none; }
+.gf-h circle:not(.gf-h-halo) { fill: var(--c); stroke: #0b1220; stroke-width: 2; filter: drop-shadow(0 0 6px var(--c)); }
+.gf-h-halo { fill: var(--c); opacity: .14; transform-box: fill-box; transform-origin: center; }
+.ia-pant.activa .gf-h-halo { animation: haloGrafo 2.6s ease-in-out infinite; }
+.gf-h text { font: 700 8px var(--titulos); fill: #f1f5f9; text-anchor: middle; }
+.ia-grafo.foco .gf-l:not(.on) { opacity: .05; }
+.ia-grafo.foco .gf-l.on { opacity: .9; stroke-width: 1; }
+.ia-grafo.foco .gf-t:not(.on) circle { opacity: .18; }
+.ia-grafo.foco .gf-t.on text { opacity: 1; }
+.ia-grafo.foco .gf-t:not(.on) text { opacity: 0; }
+.ia-grafo.foco .gf-h:not(.on) { opacity: .35; }
+.ia-grafo.foco-comun .gf-l.on { stroke: #f472b6; }
+.grafo-foco { position: absolute; left: 10px; top: 8px; padding: 3px 10px; border-radius: 999px; font-size: .7rem; font-weight: 700; color: #e2e8f0; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .12); opacity: 0; transition: opacity .3s ease; }
+.grafo-foco.ver { opacity: 1; }
+.gf-ley { flex-wrap: wrap; gap: 12px; margin: 8px 0 6px; }
+.gf-ley span { display: inline-flex; align-items: center; gap: 6px; }
+.gf-ley i { flex: none; border: 0; border-radius: 50%; }
+.gf-ley .lg-h { width: 11px; height: 11px; background: #22d3ee; box-shadow: 0 0 6px #22d3ee; }
+.gf-ley .lg-t { width: 6px; height: 6px; background: #fb923c; }
+.gf-ley .lg-c { width: 8px; height: 8px; background: #fff; box-shadow: 0 0 0 1.5px #f472b6; }
+@media (prefers-reduced-motion: reduce) { .ia-pant.activa .gf-h-halo { animation: none; } }
+
+/* Mapa del relevamiento: versión clara */
+.grafo-oscuro { background: radial-gradient(70% 60% at 50% 45%, #ffffff, #f4f7fb 70%, #eef2f8); box-shadow: inset 0 0 0 1px var(--borde); }
+.gf-polvo { fill: #d3dbe6; }
+.gf-hilo { stroke: #e4e9f1; }
+.gf-l { opacity: .35; }
+.gf-t text { fill: #334155; }
+.gf-t.comun circle { fill: #fff; stroke: #db2777; stroke-width: 1.5; filter: drop-shadow(0 0 2px rgba(219, 39, 119, .45)); }
+.gf-t.comun text { fill: #9d174d; opacity: 1; }
+.gf-h circle:not(.gf-h-halo) { stroke: #fff; filter: drop-shadow(0 2px 5px color-mix(in srgb, var(--c) 55%, transparent)); }
+.gf-h-halo { opacity: .16; }
+.gf-h text { fill: #0f172a; paint-order: stroke; stroke: #fff; stroke-width: 3px; }
+.ia-grafo.foco .gf-t:not(.on) circle { opacity: .25; }
+.ia-grafo.foco .gf-h:not(.on) { opacity: .4; }
+.ia-grafo.foco-comun .gf-l.on { stroke: #db2777; }
+.gf-t.on text { paint-order: stroke; stroke: #fff; stroke-width: 2.5px; }
+.grafo-foco { color: var(--marino); background: #fff; border-color: var(--borde); box-shadow: 0 4px 12px rgba(0, 31, 64, .08); }
+.gf-ley .lg-h { background: #0891b2; box-shadow: 0 0 5px rgba(8, 145, 178, .6); }
+.gf-ley .lg-t { background: #ea580c; }
+.gf-ley .lg-c { box-shadow: 0 0 0 1.5px #db2777; }

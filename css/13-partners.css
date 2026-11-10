@@ -1,0 +1,43 @@
+/* Franja de socios: tarjeta flotante sobre el final de la portada */
+.portada { padding-bottom: 40px; }
+.confianza { background: transparent; position: relative; z-index: 3; margin-top: -58px; }
+.confianza .contenedor { display: block; padding-top: 0; padding-bottom: 0; }
+.confianza-tarjeta { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr); gap: 14px; align-items: stretch; padding: 16px; border-radius: 22px;
+  background: #fff; border: 1px solid var(--borde); box-shadow: 0 30px 70px rgba(0, 31, 64, .16); }
+.confianza-texto { display: flex; flex-direction: column; justify-content: center; padding: 6px 12px; }
+.confianza-etiqueta { font: 700 .72rem var(--titulos); text-transform: uppercase; letter-spacing: .08em; color: var(--azul); margin-bottom: 6px; }
+.confianza-texto p { margin: 0; color: var(--suave); font-size: .98rem; line-height: 1.5; }
+.confianza-texto b { color: var(--marino); }
+.socio { position: relative; display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-radius: 16px; text-decoration: none; color: inherit;
+  background: var(--gris); border: 1px solid transparent; transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease; }
+.socio:hover { transform: translateY(-3px); background: #fff; border-color: color-mix(in srgb, var(--sc) 45%, transparent); box-shadow: 0 16px 34px color-mix(in srgb, var(--sc) 18%, transparent); }
+.socio-odoo { --sc: #714b67; } .socio-code { --sc: #0891b2; }
+.socio-logo { flex: none; width: 128px; height: 72px; padding: 10px 12px; border-radius: 14px; display: grid; place-items: center; background: #fff; border: 1px solid var(--borde); box-shadow: 0 4px 12px rgba(0, 31, 64, .06); }
+.socio-logo img { width: 100%; height: 100%; object-fit: contain; image-rendering: -webkit-optimize-contrast; }
+.socio-info { min-width: 0; display: grid; gap: 2px; }
+.socio-info em { justify-self: start; font-style: normal; font: 700 .68rem var(--titulos); letter-spacing: .07em; text-transform: uppercase; color: var(--sc); padding: 3px 9px; border-radius: 999px;
+  background: color-mix(in srgb, var(--sc) 10%, #fff); border: 1px solid color-mix(in srgb, var(--sc) 25%, transparent); }
+.socio-info b { font: 700 1rem var(--titulos); color: var(--marino); margin-top: 3px; }
+.socio-info small { font-size: .8rem; font-weight: 500 !important; color: var(--suave) !important; line-height: 1.35; color: var(--marino); font-weight: 600; }
+.socio-ir { margin-left: auto; align-self: flex-start; font-weight: 800; color: var(--sc); opacity: .5; transition: opacity .25s ease, transform .25s ease; }
+.socio:hover .socio-ir { opacity: 1; transform: translate(2px, -2px); }
+@media (max-width: 1000px) { .confianza-tarjeta { grid-template-columns: 1fr 1fr; } .confianza-texto { grid-column: 1 / -1; text-align: center; align-items: center; } }
+@media (max-width: 640px) { .confianza { margin-top: -36px; } .confianza-tarjeta { grid-template-columns: 1fr; padding: 12px; } .socio-logo { width: 110px; height: 62px; } }
+
+/* Partners: logo arriba y datos abajo, sin cortes */
+.confianza-tarjeta { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr); gap: 16px; padding: 18px; }
+.socio { flex-direction: column; align-items: stretch; gap: 12px; padding: 14px; text-align: left; }
+.socio-logo { width: 100%; height: 80px; padding: 14px 20px; overflow: hidden; }
+.socio-logo img { width: auto; height: auto; max-width: 78%; max-height: 46px; }
+.socio-code .socio-logo img { max-height: 52px; }
+.socio-info { gap: 4px; }
+.socio-info em { white-space: nowrap; font-size: .64rem; padding: 3px 9px; }
+.socio-info b { margin-top: 2px; }
+.socio-ir { position: absolute; top: 12px; right: 14px; margin: 0; }
+@media (max-width: 860px) { .confianza .contenedor { text-align: left; } }
+@media (max-width: 1000px) { .confianza-tarjeta { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) {
+  .confianza-tarjeta { grid-template-columns: 1fr 1fr; gap: 10px; padding: 12px; }
+  .socio { padding: 10px; gap: 8px; } .socio-logo { height: 58px; padding: 10px 12px; } .socio-logo img { max-height: 32px; max-width: 86%; } .socio-code .socio-logo img { max-height: 38px; }
+  .socio-info small { font-size: .74rem; } .socio-info em { font-size: .56rem; white-space: normal; }
+}

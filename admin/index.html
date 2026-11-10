@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel · AXENTRA AI</title>
+<link rel="icon" href="../assets/axentra-x.png">
+<link rel="stylesheet" href="panel.css">
+</head>
+<body>
+
+<header class="barra">
+  <a href="../" class="barra-logo" title="Ver la página"><img src="../assets/axentra-logo.png" alt="AXENTRA AI"></a>
+  <span class="barra-titulo">Panel de la página</span>
+  <div class="barra-usuario" id="barra-usuario" hidden>
+    <img id="usuario-foto" alt="">
+    <span id="usuario-nombre"></span>
+    <button type="button" class="boton chico secundario" id="boton-salir">Salir</button>
+  </div>
+</header>
+
+<!-- Ingreso -->
+<main class="ingreso" id="vista-ingreso">
+  <form class="tarjeta ingreso-caja" id="formulario-ingreso" autocomplete="off">
+    <h1>Ingresar</h1>
+    <p class="sub">Solo para el equipo de AXENTRA. Cada persona entra con su propio token de GitHub: no hay contraseñas guardadas en la página.</p>
+    <label class="campo"><span>Token de acceso de GitHub</span>
+      <input type="password" id="token" placeholder="github_pat_…" required spellcheck="false">
+    </label>
+    <label class="check"><input type="checkbox" id="recordar"> Recordarme en esta computadora</label>
+    <button type="submit" class="boton primario ancho" id="boton-ingresar">Ingresar</button>
+    <p class="error" id="error-ingreso" role="alert"></p>
+    <details class="ayuda">
+      <summary>¿Cómo obtengo mi token? (una sola vez)</summary>
+      <ol>
+        <li>Entrá a GitHub con tu cuenta y abrí <b>Settings → Developer settings → Personal access tokens → Fine-grained tokens</b>.</li>
+        <li>Tocá <b>Generate new token</b>. Nombre: <i>Panel página AXENTRA</i>. Vencimiento: el que prefieras (por ejemplo, 1 año).</li>
+        <li>En <b>Repository access</b> elegí <b>Only select repositories</b> y marcá <b id="ayuda-repo"></b>.</li>
+        <li>En <b>Permissions → Repository permissions</b>, poné <b>Contents</b> en <b>Read and write</b>.</li>
+        <li>Tocá <b>Generate token</b>, copiá el texto que empieza con <code>github_pat_</code> y pegalo acá.</li>
+      </ol>
+      <p>Guardá el token en un lugar seguro y no lo compartas: es tu llave para editar la página.</p>
+    </details>
+  </form>
+</main>
+
+<!-- Panel -->
+<main class="panel" id="vista-panel" hidden>
+  <nav class="pestanas" role="tablist" aria-label="Secciones">
+    <button type="button" role="tab" class="pestana" data-seccion="equipo" aria-selected="true">Equipo</button>
+    <button type="button" role="tab" class="pestana" data-seccion="clientes" aria-selected="false">Clientes</button>
+  </nav>
+  <div class="columnas">
+    <section class="lista-caja tarjeta">
+      <div class="lista-cabeza"><h2 id="lista-titulo"></h2><button type="button" class="boton chico primario" id="boton-agregar">+ Agregar</button></div>
+      <p class="sub" id="lista-ayuda"></p>
+      <ol class="lista" id="lista"></ol>
+    </section>
+    <section class="editor-caja tarjeta" id="editor" aria-live="polite"></section>
+  </div>
+</main>
+
+<div class="guardar" id="barra-guardar" hidden>
+  <span id="estado-guardar">Hay cambios sin guardar</span>
+  <button type="button" class="boton chico secundario" id="boton-descartar">Descartar</button>
+  <button type="button" class="boton primario" id="boton-guardar">Guardar y publicar</button>
+</div>
+<div class="aviso" id="aviso" role="status" hidden></div>
+
+<script src="config.js"></script>
+<script src="panel.js"></script>
+</body>
+</html>
