@@ -1,5 +1,5 @@
 /* Inicio: "¿Qué hacemos?" — una tarjeta por página, en el orden del menú
-   Parte de la configuración de la página (ver LEEME.md). pagina = id de datos/menu.js */
+   Parte de la configuración de la página (ver LEEME.md). pagina = id de datos/menu.js · url (opcional) = enlace a una parte de la página */
 window.SITIO = window.SITIO || {};
 Object.assign(window.SITIO, {
 
@@ -13,12 +13,12 @@ Object.assign(window.SITIO, {
         texto: "Nuestro asistente de inteligencia artificial escucha las entrevistas, las transcribe y ordena lo que nos cuenta tu equipo." },
       { pagina: "consultoria", icono: "i:diagnostico", color: "#0056ff", titulo: "Consultoría y procesos",
         texto: "Primero entendemos cómo trabaja tu empresa y dejamos sus procesos por escrito. Después configuramos Odoo." },
-      { pagina: "implementacion", icono: "i:soporte", color: "#db2777", titulo: "Implementación y soporte",
-        texto: "Implementamos Odoo, desarrollamos lo que haga falta, capacitamos a tu equipo y te acompañamos después." },
       { pagina: "automatizacion", icono: "i:rayo", color: "#16a34a", titulo: "IA y automatización",
         texto: "Lo que hoy se carga a mano o depende de que alguien se acuerde, pasa a hacerse solo." },
-      { pagina: "dnit", icono: "i:normativa", color: "#0891b2", titulo: "DNIT y SIFEN",
-        texto: "Odoo no trae Paraguay. Nosotros sí: contabilidad DNIT, facturación electrónica e-Kuatia y firma digital." }
+      { pagina: "implementacion", icono: "i:soporte", color: "#db2777", titulo: "Implementaciones y soporte",
+        texto: "Implementamos Odoo, desarrollamos lo que haga falta, capacitamos a tu equipo y te acompañamos después." },
+      { pagina: "implementacion", url: "implementacion.html#normativa", icono: "i:normativa", color: "#0891b2", titulo: "DNIT y SIFEN",
+        texto: "Odoo no viene preparado para Paraguay: le sumamos la contabilidad según la DNIT, la factura electrónica (SIFEN) y la firma digital." }
     ]
   }
 });

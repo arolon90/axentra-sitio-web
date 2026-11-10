@@ -3,7 +3,7 @@
 window.SITIO = window.SITIO || {};
 Object.assign(window.SITIO, {
 
-  /* Sección "Odoo no trae Paraguay": los cuatro frentes y la factura electrónica de ejemplo */
+  /* Sección "Normativa DNIT y SIFEN" (en implementacion.html): los cuatro frentes y la factura electrónica de ejemplo */
   normativa: {
     pasos: [
       { icono: "i:libro", titulo: "Contabilidad DNIT", texto: "Tu contabilidad con el plan de cuentas y los impuestos de Paraguay.",

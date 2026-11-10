@@ -1,7 +1,7 @@
 /* Normativa DNIT y SIFEN */
 (function () {
   var AX = window.AX, d = AX.d, visibles = AX.visibles, icono = AX.icono, paleta = AX.paleta, colorDe = AX.colorDe, dos = AX.dos, esc = AX.esc, armarCarrusel = AX.armarCarrusel, marca = AX.marca, pestanasDe = AX.pestanasDe;
-  /* "Odoo no trae Paraguay": los cuatro frentes y la factura electrónica de ejemplo */
+  /* Normativa DNIT y SIFEN: los cuatro frentes y la factura electrónica de ejemplo */
   var nv = d.normativa, listaDnit = document.getElementById('dnit-pasos');
   if (nv && listaDnit) {
     listaDnit.innerHTML = nv.pasos.map(function (x, n) {
