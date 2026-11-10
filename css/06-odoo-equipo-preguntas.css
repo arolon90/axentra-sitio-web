@@ -36,11 +36,10 @@
 .frase-areas p { margin: 0; color: var(--suave); max-width: 420px; }
 .frase-areas + .areas-pestanas { margin-top: 26px; }
 .app-area { position: relative; padding-right: 46px; }
-/* punto del color del área: chiquito en reposo y, al pasar el mouse, se agranda con un ✓ ("incluido") */
-.app-area::after { content: "\2713"; position: absolute; right: 16px; top: 50%; width: 26px; height: 26px; margin-top: -13px; border-radius: 50%; display: grid; place-items: center;
-  font: 700 .85rem/1 var(--titulos); color: transparent; background: var(--color); transform: scale(.3); opacity: .85;
-  transition: transform .3s cubic-bezier(.2, .8, .2, 1.3), color .2s ease, opacity .2s ease; }
-.app-area:hover::after { transform: scale(1); color: #fff; opacity: 1; }
+/* punto del color del área: chiquito en reposo y, al pasar el mouse, solo se agranda (sin signos) */
+.app-area::after { content: ""; position: absolute; right: 16px; top: 50%; width: 22px; height: 22px; margin-top: -11px; border-radius: 50%;
+  background: var(--color); transform: scale(.35); opacity: .85; transition: transform .3s cubic-bezier(.2, .8, .2, 1.3), opacity .2s ease; }
+.app-area:hover::after { transform: scale(1); opacity: 1; }
 @media (max-width: 900px) { .odoo-cabeza { grid-template-columns: 1fr; gap: 36px; } }
 @media (max-width: 560px) {
   .flujo-odoo { padding: 18px 14px 14px; } .fo-nodo { width: 54px; } .fo-ico { width: 44px; height: 44px; border-radius: 13px; } .fo-ico img { width: 24px; height: 24px; }
