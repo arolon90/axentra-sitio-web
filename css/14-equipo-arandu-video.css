@@ -1,7 +1,14 @@
 /* Equipo: tarjeta de Arandu AI junto al método y los socios lado a lado */
-.equipo-grilla { align-items: center; }
+.equipo-grilla { align-items: end; }   /* la tarjeta de Arandu queda a la altura del texto */
+.equipo-grilla .intro { margin-bottom: 0; }
+/* los 4 pasos del método en una sola fila */
+.valores.valores-fila { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px 28px; margin-top: 52px; padding-top: 36px; border-top: 1px solid var(--borde); }
+@media (max-width: 1000px) { .valores.valores-fila { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .valores.valores-fila { grid-template-columns: 1fr; } }
+/* subtítulo "Staff" sobre los miembros */
+.equipo-subtitulo { margin: 64px 0 0; font-size: clamp(1.4rem, 2.4vw, 1.8rem); font-weight: 800; color: var(--marino); }
 .equipo-ia { display: grid; gap: 14px; min-width: 0; }
-.equipo.socios { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 40px; }
+.equipo.socios { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-top: 24px; }
 .equipo.socios .persona { height: 100%; }
 @media (max-width: 900px) { .equipo.socios { grid-template-columns: 1fr; } }
 

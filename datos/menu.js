@@ -11,10 +11,10 @@ Object.assign(window.SITIO, {
     { id: "odoo",           url: "odoo.html",           nombre: "¿Qué es Odoo?" },
     { id: "arandu",         url: "arandu-ai.html",      nombre: "Arandu AI" },
     { id: "consultoria",    url: "consultoria.html",    nombre: "Consultoría y procesos" },
-    { id: "implementacion", url: "implementacion.html", nombre: "Implementación y soporte" },
     { id: "automatizacion", url: "automatizacion.html", nombre: "IA y automatización" },
-    { id: "dnit",           url: "dnit-sifen.html",     nombre: "DNIT y SIFEN" },
+    { id: "implementacion", url: "implementacion.html", nombre: "Implementaciones y soporte" },
     { id: "equipo",         url: "equipo.html",         nombre: "Nuestro equipo" },
+    { id: "preguntas",      url: "preguntas.html",      nombre: "Preguntas frecuentes" },
     { id: "contacto",       url: "contacto.html",       nombre: "Contacto" }
   ],
 
@@ -23,8 +23,9 @@ Object.assign(window.SITIO, {
     opciones: [
       { pagina: "odoo" },
       { pagina: "arandu" },
-      { texto: "Servicios", sub: ["consultoria", "implementacion", "automatizacion", "dnit"] },
-      { pagina: "equipo" }
+      { texto: "Servicios", sub: ["consultoria", "automatizacion", "implementacion"] },
+      { pagina: "equipo" },
+      { pagina: "preguntas" }
     ],
     boton: { texto: "Contactanos", pagina: "contacto" }
   },
@@ -33,8 +34,8 @@ Object.assign(window.SITIO, {
   pie: {
     texto: "Consultoría de procesos e implementación de Odoo para empresas paraguayas: relevamiento, normativa DNIT, inteligencia artificial y soporte.",
     columnas: [
-      { titulo: "Conocé", enlaces: [{ pagina: "odoo" }, { pagina: "arandu" }, { texto: "Preguntas frecuentes", url: "contacto.html#preguntas" }] },
-      { titulo: "Servicios", enlaces: [{ pagina: "consultoria" }, { pagina: "implementacion" }, { pagina: "automatizacion" }, { pagina: "dnit" }] },
+      { titulo: "Conocé", enlaces: [{ pagina: "odoo" }, { pagina: "arandu" }, { pagina: "preguntas" }] },
+      { titulo: "Servicios", enlaces: [{ pagina: "consultoria" }, { pagina: "automatizacion" }, { pagina: "implementacion" }, { texto: "Normativa DNIT y SIFEN", url: "implementacion.html#normativa" }] },
       { titulo: "La empresa", enlaces: [{ texto: "Clientes", url: "index.html#clientes" }, { pagina: "equipo" }] }
     ]
   }

@@ -12,11 +12,11 @@ no hace falta tocar el diseño (`css/`) ni la programación (`js/`).
 | ¿Qué es Odoo?            | `odoo.html`           | Qué es Odoo, sus áreas y "Así se ve en Odoo"           |
 | Arandu AI                | `arandu-ai.html`      | Presentación con video, capacidades y app de ejemplo   |
 | Consultoría y procesos   | `consultoria.html`    | Antes y después, método y entregables                  |
-| Implementación y soporte | `implementacion.html` | Servicios                                              |
+| Implementaciones y soporte | `implementacion.html` | Servicios y, como último apartado, normativa DNIT y SIFEN |
 | IA y automatización      | `automatizacion.html` | Casos por industria                                    |
-| DNIT y SIFEN             | `dnit-sifen.html`     | Normativa y factura electrónica                        |
 | Nuestro equipo           | `equipo.html`         | Equipo y Arandu AI                                     |
-| Contacto                 | `contacto.html`       | Formulario, WhatsApp, correo y preguntas frecuentes    |
+| Preguntas frecuentes     | `preguntas.html`      | Preguntas frecuentes y consulta por WhatsApp           |
+| Contacto                 | `contacto.html`       | Formulario, WhatsApp y correo                          |
 
 Los enlaces viejos de la página única (por ejemplo `axentra-ai.com.py/#contacto`) llevan solos a su página nueva.
 
