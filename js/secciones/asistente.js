@@ -9,6 +9,11 @@
     document.getElementById('asistente-capacidades').innerHTML = (ia.capacidades || []).map(function (c) {
       return '<div class="capacidad"><span class="cap-icono">' + icono(c.icono) + '</span><div><strong>' + esc(c.titulo) + '</strong><span>' + esc(c.texto) + '</span></div></div>'; }).join('');
     document.getElementById('asistente-nota').textContent = ia.nota || '';
+    var cajaVid = document.getElementById('asistente-video');
+    if (cajaVid) {
+      if (ia.video) { cajaVid.innerHTML = AX.videoDe(ia, ia.nombre + ' trabajando: abre la laptop, ordena los datos del relevamiento y saluda'); AX.activarVideos(cajaVid); }
+      else { cajaVid.parentNode.classList.add('sin-video'); cajaVid.parentNode.removeChild(cajaVid); }
+    }
     var dm = ia.demo || {}, barras = '';
     for (var b = 0; b < 46; b++) { barras += '<i style="height:' + (22 + Math.round(Math.abs(Math.sin(b * 0.55) * Math.cos(b * 0.21)) * 70)) + '%"></i>'; }
     var svg = function (d, relleno) { return '<svg viewBox="0 0 24 24" aria-hidden="true"' + (relleno ? ' class="relleno"' : '') + '>' + d + '</svg>'; };

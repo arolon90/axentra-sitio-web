@@ -5,6 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>AXENTRA AI · Implementación de Odoo en Paraguay</title>
 <meta name="description" content="AXENTRA AI implementa Odoo en empresas paraguayas de todos los rubros: diagnóstico, normativa DNIT, facturación electrónica SIFEN, nómina con IPS, inteligencia de negocios y soporte.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AXENTRA AI">
+<meta property="og:locale" content="es_PY">
+<meta property="og:title" content="AXENTRA AI · Implementación de Odoo en Paraguay">
+<meta property="og:description" content="AXENTRA AI implementa Odoo en empresas paraguayas de todos los rubros: diagnóstico, normativa DNIT, facturación electrónica SIFEN, nómina con IPS, inteligencia de negocios y soporte.">
+<meta property="og:url" content="https://www.axentra-ai.com.py/">
+<meta property="og:image" content="https://www.axentra-ai.com.py/assets/arandu/arandu-ai-poster.jpg">
 <link rel="icon" href="assets/axentra-x.png">
 <link rel="stylesheet" href="css/01-base.css">
 <link rel="stylesheet" href="css/02-efectos.css">
@@ -21,24 +28,15 @@
 <link rel="stylesheet" href="css/13-partners.css">
 <link rel="stylesheet" href="css/14-equipo-arandu-video.css">
 <link rel="stylesheet" href="css/15-pasos-contacto-pie-base.css">
+<link rel="stylesheet" href="css/16-marco-paginas.css">
+<script>/* enlaces viejos de la página única (ej. /#contacto) llevan a su página nueva */
+(function () { var m = { odoo: 'odoo.html', 'en-accion': 'odoo.html#en-accion', asistente: 'arandu-ai.html', caminos: 'consultoria.html', 'como-trabajamos': 'consultoria.html',
+  automatizacion: 'automatizacion.html', servicios: 'implementacion.html', normativa: 'dnit-sifen.html', clientes: 'clientes.html', equipo: 'equipo.html',
+  preguntas: 'contacto.html#preguntas', contacto: 'contacto.html' }; var h = location.hash.slice(1); if (m[h]) { location.replace(m[h]); } })();</script>
 </head>
-<body>
+<body data-pagina="inicio">
 
-<header>
-  <div class="contenedor">
-    <a href="#inicio" aria-label="AXENTRA AI"><img src="assets/axentra-logo.png" alt="AXENTRA AI"></a>
-    <nav>
-      <a href="#odoo">¿Qué es Odoo?</a>
-      <a href="#como-trabajamos">Consultoría</a>
-      <a href="#automatizacion">IA y automatización</a>
-      <a href="#servicios">Servicios</a>
-      <a href="#normativa">DNIT y SIFEN</a>
-      <a href="#clientes">Clientes</a>
-      <a href="#contacto" class="boton primario">Pedir diagnóstico</a>
-    </nav>
-  </div>
-</header>
-
+<main id="contenido">
 <section class="portada" id="inicio">
   <div class="contenedor">
     <div>
@@ -46,8 +44,8 @@
       <h1>Gestioná toda tu empresa <span>desde un solo sistema</span></h1>
       <p>Odoo, implementado por AXENTRA AI: contabilidad con la normativa DNIT, facturación electrónica SIFEN, firma digital, nómina con IPS, ventas e inventario. Sencillo, integrado y hecho para Paraguay.</p>
       <div class="acciones">
-        <a href="#contacto" class="boton primario">Pedir un diagnóstico</a>
-        <a href="#odoo" class="boton secundario">Conocé Odoo</a>
+        <a href="contacto.html?motivo=diagnostico" class="boton primario">Pedir un diagnóstico</a>
+        <a href="odoo.html" class="boton secundario">Conocé Odoo</a>
       </div>
       <div class="nota-mano">
         <svg viewBox="0 0 80 60" aria-hidden="true"><path d="M70 6 C 40 4, 18 18, 12 46" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M4 36 L12 48 L22 38" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -91,139 +89,16 @@
   </div>
 </section>
 
-<section class="seccion" id="odoo">
+<section class="seccion gris" id="que-hacemos-seccion">
   <div class="contenedor">
-    <div class="odoo-cabeza">
-      <div>
-        <span class="etiqueta con-numero">¿Qué es Odoo?</span>
-        <h2>Todas las áreas de tu empresa, <em>conectadas.</em></h2>
-        <p class="intro">Odoo es un sistema de gestión integrado (ERP) de código abierto, usado por millones de personas en todo el mundo. Cada área trabaja en su aplicación y todo queda conectado.</p>
-        <div class="odoo-datos">
-          <span><b>1</b>solo sistema para todas las áreas</span>
-          <span><b>0</b>datos cargados dos veces</span>
-        </div>
-      </div>
-      <div class="flujo-odoo" id="flujo-odoo" aria-label="Recorrido de una venta en Odoo"></div>
-    </div>
-    <div class="frase-areas"><h3>¿Querés mejorar un área? <em>Hay una aplicación para eso.</em></h3><p>Empezás por lo que más necesitás y sumás el resto cuando quieras, sin cambiar de sistema.</p></div>
-    <div class="areas" id="lista-areas"></div>
-    <div class="centrado"><a href="#caminos" class="boton primario">¿Por dónde empiezo?</a></div>
+    <span class="etiqueta">¿Qué hacemos?</span>
+    <h2 id="qh-titulo"></h2>
+    <p class="intro" id="qh-texto"></p>
+    <div class="que-hacemos" id="que-hacemos"></div>
   </div>
 </section>
 
-<section class="seccion gris" id="en-accion">
-  <div class="contenedor">
-    <span class="etiqueta">Así se ve en Odoo</span>
-    <h2>Odoo <em>en acción</em>, con nuestros módulos</h2>
-    <p class="intro">Así se ven en Odoo los módulos de AXENTRA, con datos demostrativos.</p>
-    <div id="lista-pantallas"></div>
-  </div>
-</section>
-
-<section class="seccion" id="caminos">
-  <div class="contenedor">
-    <span class="etiqueta">Identificá tu camino</span>
-    <h2>¿En qué punto está <em>tu empresa</em>?</h2>
-    <p class="intro">Cada empresa llega a Odoo desde un lugar distinto. Elegí el tuyo y te contamos cómo seguimos.</p>
-    <div class="grilla caminos deslizable" id="lista-caminos"></div>
-    <p class="deslizar-aviso">Deslizá para ver más →</p>
-  </div>
-</section>
-
-<section class="seccion gris" id="como-trabajamos">
-  <div class="contenedor">
-    <span class="etiqueta">Consultoría y análisis de procesos</span>
-    <h2>Primero entendemos tu empresa. <em>Después</em> configuramos Odoo.</h2>
-    <p class="intro">Muchas empresas nunca tuvieron sus procesos escritos: cada área trabaja con sus propias planillas y lo importante está en la cabeza de las personas. Somos especialistas en relevamiento: recorremos cada área con sus responsables, ordenamos lo que encontramos y lo dejamos por escrito y firmado, antes de tocar Odoo.</p>
-    <div class="pestanas" id="pestanas-metodo">
-      <div class="pestanas-lista" role="tablist" aria-label="Consultoría">
-        <button type="button" class="pestana" role="tab" id="tab-antes" aria-controls="panel-antes">Antes y después</button>
-        <button type="button" class="pestana" role="tab" id="tab-metodo" aria-controls="panel-metodo">Nuestro método</button>
-        <button type="button" class="pestana" role="tab" id="tab-entregables" aria-controls="panel-entregables">Lo que te entregamos</button>
-      </div>
-      <div class="pestana-panel" role="tabpanel" id="panel-antes" aria-labelledby="tab-antes"><div class="antes-despues" id="antes-despues"></div></div>
-      <div class="pestana-panel" role="tabpanel" id="panel-metodo" aria-labelledby="tab-metodo"><div class="pasos" id="lista-pasos"></div></div>
-      <div class="pestana-panel" role="tabpanel" id="panel-entregables" aria-labelledby="tab-entregables">
-    <div class="metodo-doc">
-      <div class="ejemplos" id="ejemplos" aria-roledescription="carrusel" aria-label="Ejemplos de entregables">
-        <div class="ej-marco"><div class="ej-pista" id="ej-pista"></div></div>
-        <div class="ej-controles">
-          <button type="button" class="ej-btn" id="ej-ant" aria-label="Ejemplo anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-          <div class="ej-info"><b id="ej-nombre"></b><span id="ej-desc"></span><div class="ej-puntos" id="ej-puntos"></div></div>
-          <button type="button" class="ej-btn" id="ej-sig" aria-label="Ejemplo siguiente"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-        </div>
-      </div>
-      <div>
-        <h3 class="subtitulo">Lo que te entregamos por escrito</h3>
-        <div class="entregables" id="lista-entregables"></div>
-      </div>
-    </div>
-      </div>
-    </div>
-    <div class="centrado"><a href="#contacto" class="boton primario">Pedir un diagnóstico</a></div>
-  </div>
-</section>
-
-<section class="seccion asistente" id="asistente">
-  <div class="contenedor asistente-grilla">
-    <div>
-      <span class="etiqueta">Inteligencia artificial propia</span>
-      <h2 id="asistente-titulo"></h2>
-      <p class="intro" id="asistente-texto"></p>
-      <div class="capacidades grilla deslizable" id="asistente-capacidades"></div>
-      <p class="asistente-nota" id="asistente-nota"></p>
-    </div>
-    <div class="marca-agua-cont ia-panel" id="asistente-demo"></div>
-  </div>
-</section>
-
-<section class="seccion gris" id="automatizacion">
-  <div class="contenedor">
-    <div class="auto-cabeza">
-      <div>
-        <span class="etiqueta con-numero">IA y automatizaciones</span>
-        <h2>Menos tareas repetitivas, <em>más tiempo</em> para tu negocio</h2>
-        <p class="intro">Optimizamos tus procesos integrando inteligencia artificial y automatizaciones en Odoo. Lo que hoy se carga a mano, se copia de un lado a otro o depende de que alguien se acuerde, pasa a hacerse solo, y una persona revisa lo importante.</p>
-      </div>
-      <ol class="auto-pasos" id="auto-pasos"></ol>
-    </div>
-    <div class="auto-visor" id="auto-pestanas"></div>
-    <p class="auto-nota" id="auto-nota"></p>
-    <div class="auto-cierre">
-      <div><b>¿Qué tarea te gustaría sacarte de encima?</b><span>Contanos cuál y vemos juntos si se puede automatizar.</span></div>
-      <a href="#contacto" class="boton primario">Quiero automatizar</a>
-    </div>
-  </div>
-</section>
-
-<section class="seccion" id="servicios">
-  <div class="contenedor">
-    <span class="etiqueta">Servicios</span>
-    <h2>Todo lo que tu empresa <em>necesita</em></h2>
-    <p class="intro">Lo que hacemos además de implementar Odoo, para empresas de todos los rubros.</p>
-    <div class="grilla servicios deslizable" id="lista-servicios"></div>
-    <p class="deslizar-aviso">Deslizá para ver más →</p>
-  </div>
-</section>
-
-<section class="seccion normativa" id="normativa">
-  <div class="contenedor">
-    <span class="etiqueta">Normativa DNIT y SIFEN</span>
-    <h2>Odoo no trae Paraguay. <em>Nosotros sí.</em></h2>
-    <p class="intro">Odoo incluye la localización de varios países de la región, pero no la de Paraguay. Desarrollamos los módulos para que tu contabilidad y tu facturación cumplan con la Dirección Nacional de Ingresos Tributarios desde el primer día.</p>
-    <div class="dnit-grilla">
-      <ol class="dnit-pasos" id="dnit-pasos"></ol>
-      <div class="kude-cont"><div class="marca-agua-cont kude" id="dnit-factura"></div></div>
-    </div>
-    <div class="dnit-banda">
-      <span class="banda-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"/><path d="M4 4v4h4"/><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"/><path d="M20 20v-4h-4"/></svg></span>
-      <div class="banda-texto"><b>Siempre al día con la DNIT</b><span>Actualizamos los módulos cada vez que cambia la normativa: tu equipo no tiene que estar pendiente de cada resolución.</span></div>
-      <a href="#contacto" class="boton primario">Integrar la DNIT a mi Odoo</a>
-    </div>
-  </div>
-</section>
-
-<section class="seccion gris" id="clientes">
+<section class="seccion" id="clientes">
   <div class="contenedor">
     <span class="etiqueta">Clientes</span>
     <h2>Confían en <em>nosotros</em></h2>
@@ -242,93 +117,14 @@
     </div>
   </div>
 </section>
-
-<section class="seccion" id="equipo">
-  <div class="contenedor">
-    <div class="equipo-grilla">
-      <div class="equipo-texto">
-        <span class="etiqueta con-numero">Equipo</span>
-        <h2>Consultores en <em>procesos</em>, con base en Paraguay</h2>
-        <p class="intro">Nuestro trabajo empieza antes del sistema: entendemos cómo funciona tu empresa, definimos sus procesos y su estructura, y recién después lo llevamos a Odoo. Conocemos la contabilidad y la normativa paraguaya, y nos apoyamos en Arandu AI para llegar a tiempo.</p>
-        <ul class="valores" id="equipo-valores"></ul>
-      </div>
-      <div class="equipo-ia" id="equipo-ia"></div>
-    </div>
-    <div class="equipo socios" id="lista-equipo"></div>
-  </div>
-</section>
-
-<section class="seccion gris" id="preguntas">
-  <div class="contenedor faq-grilla">
-    <aside class="faq-lado">
-      <span class="etiqueta con-numero">Preguntas frecuentes</span>
-      <h2>Lo que más nos <em>preguntan</em></h2>
-      <p class="intro">Si tu duda no está acá, escribinos: te respondemos nosotros, no un formulario.</p>
-      <div class="faq-chat" aria-label="Ejemplo de consulta por WhatsApp">
-        <div class="faq-chat-cab"><span class="faq-chat-logo">A</span><div><b>AXENTRA AI</b><small>Consultas por WhatsApp</small></div></div>
-        <p class="burbuja cliente">Hola, ¿Odoo sirve para una empresa como la mía?</p>
-        <p class="burbuja nuestra">¡Hola! Te proponemos una primera reunión por Meet para conocernos y entender cómo trabajan.</p>
-        <p class="burbuja escribiendo" aria-hidden="true"><i></i><i></i><i></i></p>
-        <a class="boton whatsapp" id="faq-wa" href="#" target="_blank" rel="noopener">Hacer mi pregunta</a>
-      </div>
-    </aside>
-    <div class="preguntas" id="lista-preguntas"></div>
-    <a class="boton whatsapp faq-wa-movil" id="faq-wa-movil" href="#" target="_blank" rel="noopener">¿Otra pregunta? Escribinos</a>
-  </div>
-</section>
-
-<section class="seccion contacto" id="contacto">
-  <div class="contenedor contacto-grilla">
-    <div class="contacto-texto">
-      <span class="etiqueta con-numero">Contacto</span>
-      <h2>¿Hablamos de tu <em>empresa</em>?</h2>
-      <p class="intro">Arrancamos con una reunión por Google Meet para conocernos y entender cómo trabaja tu empresa. Si avanzamos, nos reunimos en persona con las partes.</p>
-      <ol class="contacto-pasos">
-        <li><span>1</span><div><b>Nos escribís</b>Por WhatsApp, por correo o con este formulario.</div></li>
-        <li><span>2</span><div><b>Reunión por Meet</b>Para conocernos y entender qué necesita tu empresa.</div></li>
-        <li><span>3</span><div><b>Reunión presencial</b>Si avanzamos, con las partes involucradas.</div></li>
-      </ol>
-      <div class="contacto-directo">
-        <a id="enlace-whatsapp" href="#" target="_blank" rel="noopener"><i class="cd-ico wa"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.5 6.5 0 0 0 1.4 3.4 14.6 14.6 0 0 0 5.6 4.9c2.1.9 2.9 1 4 .8a3.3 3.3 0 0 0 2.2-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.4z"/></svg></i><span><small>WhatsApp</small><b id="numero-whatsapp"></b></span></a>
-        <a id="enlace-correo" href="#"><i class="cd-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg></i><span><small>Correo</small><b id="texto-correo"></b></span></a>
-      </div>
-    </div>
-    <form class="formulario contacto-form" id="formulario-contacto">
-      <div class="cf-cabeza"><b>Escribinos</b><span>Te respondemos por WhatsApp para coordinar la reunión.</span></div>
-      <label class="cf-campo cf-ancho"><span>Nombre y apellido</span><input name="nombre" autocomplete="name" required></label>
-      <label class="cf-campo"><span>Empresa</span><input name="empresa" autocomplete="organization"></label>
-      <label class="cf-campo"><span>Teléfono</span><input name="telefono" autocomplete="tel" inputmode="tel"></label>
-      <label class="cf-campo cf-ancho"><span>¿Qué necesitás?</span><textarea name="mensaje" rows="3" required></textarea></label>
-      <button class="boton whatsapp" type="submit">Enviar por WhatsApp</button>
-    </form>
-  </div>
-</section>
-
-<footer class="pie">
-  <div class="contenedor pie-grilla">
-    <div class="pie-marca">
-      <img src="assets/axentra-logo-blanco.png" alt="AXENTRA AI">
-      <p>Consultoría de procesos e implementación de Odoo para empresas paraguayas: relevamiento, normativa DNIT, inteligencia artificial y soporte.</p>
-      <span class="pie-partner">Odoo Official Partner</span>
-    </div>
-    <nav class="pie-col" aria-label="Secciones">
-      <b>La empresa</b>
-      <a href="#odoo">¿Qué es Odoo?</a><a href="#como-trabajamos">Consultoría</a><a href="#automatizacion">IA y automatización</a><a href="#servicios">Servicios</a><a href="#normativa">DNIT y SIFEN</a><a href="#equipo">Equipo</a>
-    </nav>
-    <div class="pie-col">
-      <b>Contacto</b>
-      <a id="pie-whatsapp" href="#" target="_blank" rel="noopener">WhatsApp</a><a id="pie-correo" href="#"></a><span id="pie-ciudad"></span>
-      <a href="#contacto" class="boton primario pie-boton">Pedir un diagnóstico</a>
-    </div>
-  </div>
-  <div class="contenedor pie-base"><span>© 2026 <span id="pie-texto">AXENTRA AI Paraguay</span></span><span>Odoo es una marca registrada de Odoo S.A. · <a class="pie-ingresar" href="admin/">Ingresar</a></span></div>
-</footer>
+</main>
 
 <script src="assets/iconos.js"></script>
 <script src="datos/general.js"></script>
+<script src="datos/menu.js"></script>
+<script src="datos/inicio.js"></script>
 <script src="datos/portada.js"></script>
 <script src="datos/odoo.js"></script>
-<script src="datos/caminos.js"></script>
 <script src="datos/consultoria.js"></script>
 <script src="datos/asistente.js"></script>
 <script src="datos/automatizacion.js"></script>
@@ -337,28 +133,13 @@
 <script src="datos/clientes.js"></script>
 <script src="datos/equipo.js"></script>
 <script src="datos/preguntas.js"></script>
-<script src="assets/pantallas-odoo.js"></script>
 <script src="js/base.js"></script>
+<script src="js/marco.js"></script>
 <script src="js/secciones/portada.js"></script>
-<script src="js/secciones/odoo.js"></script>
-<script src="js/secciones/caminos.js"></script>
-<script src="js/secciones/consultoria.js"></script>
-<script src="js/secciones/asistente.js"></script>
-<script src="js/secciones/automatizacion.js"></script>
-<script src="js/secciones/servicios.js"></script>
-<script src="js/secciones/normativa.js"></script>
+<script src="js/secciones/inicio.js"></script>
 <script src="js/secciones/clientes.js"></script>
-<script src="js/secciones/equipo.js"></script>
-<script src="js/secciones/preguntas.js"></script>
-<script src="js/secciones/contacto.js"></script>
-
-<a class="wa-flotante" id="wa-flotante" href="#" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
-  <svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1s-.5-.2-.7.2-.8 1-1 1.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5.9-1.7.1-.2 0-.4 0-.5l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.5 6.5 0 0 0 1.4 3.4 14.6 14.6 0 0 0 5.6 4.9c2.1.9 2.9 1 4 .8a3.3 3.3 0 0 0 2.2-1.5 2.7 2.7 0 0 0 .2-1.5c-.1-.2-.3-.3-.6-.4z"/></svg>
-  <span>¿Hablamos?</span>
-</a>
 <script src="js/whatsapp-flotante.js"></script>
 <script src="js/pestanas.js"></script>
-
 <script src="js/efectos.js"></script>
 </body>
 </html>

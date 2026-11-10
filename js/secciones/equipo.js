@@ -14,7 +14,7 @@
   }).join('');
   var iaEq = d.asistente;
   if (iaEq && iaEq.visible !== false) {
-    personas += '<a class="persona persona-ia" href="#asistente" style="--c:#7c5cff">' + ficha('', '', iaEq.logo ? '<img src="' + esc(iaEq.logo) + '" alt="">' : icono('i:microfono'),
+    personas += '<a class="persona persona-ia" href="arandu-ai.html" style="--c:#7c5cff">' + ficha('', '', iaEq.logo ? '<img src="' + esc(iaEq.logo) + '" alt="">' : icono('i:microfono'),
       esc(iaEq.nombre), 'Asistente de inteligencia artificial de AXENTRA', null, '<p class="persona-bio">Escucha las entrevistas de relevamiento, las transcribe y arma los borradores de las fichas de procesos.</p><span class="ver-mas">Conocelo →</span>') + '</a>';
   }
   var htmlSocios = personas.split('<a class="persona persona-ia"')[0], cajaSocios = document.getElementById('lista-equipo');
@@ -27,9 +27,10 @@
   var cajaIaEq = document.getElementById('equipo-ia');
   if (cajaIaEq && iaEq && iaEq.visible !== false) {
     var tarjetaIa = '<a class="persona persona-ia"' + personas.split('<a class="persona persona-ia"')[1];
-    var vid = iaEq.video ? '<video src="' + esc(iaEq.video) + '"' + (iaEq.videoPoster ? ' poster="' + esc(iaEq.videoPoster) + '"' : '') + ' autoplay muted loop playsinline preload="metadata" aria-label="' + esc(iaEq.nombre) + ' en acción"></video>'
+    var vid = iaEq.video ? AX.videoDe(iaEq, iaEq.nombre + ' en acción')
       : '<div class="video-reserva">' + (iaEq.videoPoster ? '<img src="' + esc(iaEq.videoPoster) + '" alt="">' : '') + '<span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><b>' + esc(iaEq.nombre) + ' en acción</b><small>Video próximamente</small></div>';
     cajaIaEq.innerHTML = tarjetaIa + '<div class="equipo-video">' + vid + '</div>';
+    AX.activarVideos(cajaIaEq);
   }
   var cajaValores = document.getElementById('equipo-valores');
   if (cajaValores) { cajaValores.innerHTML = (d.equipoValores || []).map(function (v, n) {

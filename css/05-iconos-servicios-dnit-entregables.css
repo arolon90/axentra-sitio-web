@@ -1,9 +1,5 @@
 /* ================= Rediseño: íconos propios, tarjetas con vida, DNIT y ejemplos ================= */
-/* Títulos: número de sección y subrayado hecho a mano (en lugar del texto con degradé) */
-body { counter-reset: seccion; }
-.seccion > .contenedor > .etiqueta:first-child, .asistente-grilla > div > .etiqueta:first-child { counter-increment: seccion; display: inline-flex; align-items: center; gap: 10px; }
-.seccion > .contenedor > .etiqueta:first-child::before, .asistente-grilla > div > .etiqueta:first-child::before {
-  content: counter(seccion, decimal-leading-zero); font: 800 .8rem var(--titulos); letter-spacing: 0; padding-right: 10px; border-right: 1.5px solid currentColor; }
+/* Títulos: subrayado hecho a mano (en lugar del texto con degradé) */
 h2 em, .normativa h2 em, .asistente h2 em { color: var(--azul); -webkit-text-fill-color: currentColor; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M3 9C45 3 120 2 197 6' fill='none' stroke='%2300c4e0' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat 0 96% / 100% .3em;
   -webkit-background-clip: border-box; background-clip: border-box; padding-bottom: .06em; }
 .normativa h2 em { color: var(--celeste); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M3 9C45 3 120 2 197 6' fill='none' stroke='%230056ff' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E"); }

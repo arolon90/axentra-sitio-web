@@ -1,15 +1,34 @@
 # Página de AXENTRA AI: cómo está organizada y cómo se edita
 
-La página se arma sola a partir de los **datos**. Para cambiar textos, clientes, personas o servicios,
-se edita **solo la carpeta `datos/`**: no hace falta tocar el diseño (`css/`) ni la programación (`js/`).
+El sitio tiene **una página por tema** y todas comparten el mismo encabezado (menú) y pie, que se arman solos
+desde `datos/menu.js`. Para cambiar textos, clientes, personas o servicios, se edita **solo la carpeta `datos/`**:
+no hace falta tocar el diseño (`css/`) ni la programación (`js/`).
+
+## Páginas
+
+| Página                   | Archivo               | Qué tiene                                              |
+|--------------------------|-----------------------|--------------------------------------------------------|
+| Inicio                   | `index.html`          | Portada, partners, "¿Qué hacemos?" y clientes          |
+| ¿Qué es Odoo?            | `odoo.html`           | Qué es Odoo, sus áreas y "Así se ve en Odoo"           |
+| Arandu AI                | `arandu-ai.html`      | Presentación con video, capacidades y app de ejemplo   |
+| Consultoría y procesos   | `consultoria.html`    | Antes y después, método y entregables                  |
+| Implementación y soporte | `implementacion.html` | Servicios                                              |
+| IA y automatización      | `automatizacion.html` | Casos por industria                                    |
+| DNIT y SIFEN             | `dnit-sifen.html`     | Normativa y factura electrónica                        |
+| Clientes                 | `clientes.html`       | Partners, clientes y testimonios                       |
+| Nuestro equipo           | `equipo.html`         | Equipo y Arandu AI                                     |
+| Contacto                 | `contacto.html`       | Formulario, WhatsApp, correo y preguntas frecuentes    |
+
+Los enlaces viejos de la página única (por ejemplo `axentra-ai.com.py/#contacto`) llevan solos a su página nueva.
 
 ## Carpetas
 
 ```
-index.html              estructura de la página (secciones y orden)
-datos/                  LO QUE SE EDITA: un archivo por sección
+*.html                  una página por tema (secciones de cada una)
+datos/                  LO QUE SE EDITA: un archivo por sección, más menu.js (menú, pie y orden de páginas)
 css/                    diseño (colores, tamaños, efectos), en orden numerado
-js/base.js              ayudas comunes (carruseles, íconos, pestañas)
+js/base.js              ayudas comunes (carruseles, íconos, pestañas, video)
+js/marco.js             encabezado, menú (con desplegable y ☰ en celular), banda final con "Siguiente" y pie
 js/secciones/           cómo se dibuja cada sección a partir de sus datos
 js/pestanas.js, js/efectos.js, js/whatsapp-flotante.js
 assets/                 imágenes, logos, fotos, tipografías e íconos
@@ -19,10 +38,11 @@ assets/                 imágenes, logos, fotos, tipografías e íconos
 
 | Para cambiar…                                         | Archivo                    |
 |-------------------------------------------------------|----------------------------|
-| WhatsApp, correo, ciudad y velocidad de los carruseles | `datos/general.js`         |
+| Menú, pie de página, orden de páginas y banda final   | `datos/menu.js`            |
+| "¿Qué hacemos?" del inicio (una tarjeta por página)   | `datos/inicio.js`          |
+| WhatsApp, correo, ciudad, motivos del formulario y carruseles | `datos/general.js` |
 | Módulos y aplicaciones de la portada                  | `datos/portada.js`         |
 | Áreas de Odoo, recorrido de una venta, pantallas      | `datos/odoo.js`            |
-| "Identificá tu camino"                                | `datos/caminos.js`         |
 | Consultoría: método, entregables y ejemplos           | `datos/consultoria.js`     |
 | Arandu AI (textos, pantallas de ejemplo, video)       | `datos/asistente.js`       |
 | Casos de IA y automatizaciones por industria          | `datos/automatizacion.js`  |
@@ -43,11 +63,24 @@ assets/                 imágenes, logos, fotos, tipografías e íconos
   2 personas; con 3 o más pasa solo a ser un carrusel con flechas (`carrusel.equipo` en `general.js`).
 - **Testimonios**: están cargados con texto de ejemplo y ocultos. Se activan con `visible: true` cuando
   haya frases reales.
-- **Video de Arandu AI**: poner el archivo en `assets/arandu/` y escribir su ruta en `video` (`datos/asistente.js`).
+- **Video de Arandu AI**: va en `assets/arandu/` y su ruta en `video` (MP4), `videoWebm` (versión liviana, opcional) y
+  `videoPoster` (imagen mientras carga), en `datos/asistente.js`. Se muestra en la presentación de Arandu AI y en Equipo.
+
+## Botones y formulario de contacto
+
+Los botones que invitan a consultar llevan a `contacto.html?motivo=<clave>` (por ejemplo `?motivo=dnit`): el
+formulario llega con ese motivo ya elegido y el mensaje de WhatsApp lo incluye. Las claves y sus textos están en
+`motivos` (`datos/general.js`).
+
+## Página nueva
+
+1. Copiar una página parecida (por ejemplo `clientes.html`), cambiar `<title>`, la descripción, `data-pagina` y
+   las secciones de adentro de `<main>`.
+2. Sumarla en `paginas` de `datos/menu.js` (con el mismo id que `data-pagina`) y, si va en el menú, en `menu.opciones`.
 
 ## Antes de publicar
 
-Abrir `index.html` en el navegador y revisar la sección cambiada, en computadora y en celular.
+Abrir la página cambiada en el navegador y revisarla en computadora y en celular.
 Un error de escritura en un archivo de `datos/` (por ejemplo, una coma o una comilla de menos) deja
 esa sección vacía: si pasa, revisar el último cambio.
 
