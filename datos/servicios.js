@@ -3,16 +3,14 @@
 window.SITIO = window.SITIO || {};
 Object.assign(window.SITIO, {
 
-  /* tamano: "grande" (2 × 2, oscura), "ancho" (2 columnas) o vacío · visual: "chips", "barras" o "rubros" (opcional) */
+  /* tamano: "grande" (2 × 2, oscura), "ancho" (2 columnas) o vacío · visual: "chips", "barras" o "rubros" (opcional)
+     La normativa DNIT y SIFEN no va como tarjeta: tiene su apartado completo debajo, en la misma página. */
   servicios: [
-    { icono: "i:normativa", tamano: "grande", visual: "chips", titulo: "Normativa DNIT y SIFEN", enlace: "#normativa", visible: true,
-      texto: "Contabilidad, declaraciones, facturación electrónica e-Kuatia y firma digital en Odoo, según la normativa paraguaya.",
-      chips: ["Plan de cuentas DNIT", "IVA 10 % y 5 %", "Formulario 120", "RG 90", "e-Kuatia", "KuDE con QR", "Firma digital"] },
-    { icono: "i:personas", color: "#ea580c", titulo: "RRHH y nómina paraguaya", visible: true,
-      texto: "Legajo digital, contratos, liquidación con IPS, recibos de sueldo, pagos por banco y asientos automáticos." },
     { icono: "i:industria", color: "#16a34a", visual: "rubros", titulo: "Soluciones para cada industria", visible: true,
       texto: "Profesionales de cada rubro adaptan Odoo a tu empresa.",
       chips: ["Comercio", "Distribución", "Manufactura", "Servicios", "Agro", "Salud", "Educación", "Construcción"] },
+    { icono: "i:personas", color: "#ea580c", titulo: "RRHH y nómina paraguaya", visible: true,
+      texto: "Legajo digital, contratos, liquidación con IPS, recibos de sueldo, pagos por banco y asientos automáticos." },
     { icono: "i:integraciones", color: "#7c5cff", titulo: "Desarrollos e integraciones", visible: true,
       texto: "Módulos a medida y conexión de Odoo con tus sistemas propios y otras plataformas." },
     { icono: "i:soporte", color: "#db2777", titulo: "Capacitación y soporte", visible: true,
