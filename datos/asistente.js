@@ -9,9 +9,9 @@ Object.assign(window.SITIO, {
     nombre: "Arandu AI",
     significado: "arandu es «sabiduría» en guaraní",
     logo: "assets/arandu/avatar.png",   /* foto de perfil de Arandu AI (la cabeza del robot) */
-    /* video en loop de Arandu AI trabajando (se muestra en su presentación y en Equipo).
+    /* video en loop de Arandu AI trabajando (se muestra en su página, arandu-ai.html).
        video = MP4 (obligatorio) · videoWebm = versión más liviana (opcional) · videoPoster = imagen mientras carga.
-       video vacío ("") = en Equipo se muestra el espacio reservado y en la presentación no hay video. */
+       video vacío ("") = la presentación queda sin video. */
     video: "assets/arandu/arandu-ai-loop.mp4",
     videoWebm: "assets/arandu/arandu-ai-loop.webm",
     videoPoster: "assets/arandu/arandu-ai-poster.jpg",
@@ -22,6 +22,11 @@ Object.assign(window.SITIO, {
       { icono: "i:balanza", titulo: "Detecta decisiones y diferencias", texto: "Si dos áreas hacen lo mismo de forma distinta, lo marca para resolverlo con vos." },
       { icono: "i:reloj", titulo: "Sigue los pendientes", texto: "Qué falta, de quién depende y para cuándo, para llegar a tiempo." }
     ],
+    /* título que agrupa las capacidades y la aplicación de ejemplo (admite <em> para la palabra destacada) */
+    metodologia: {
+      titulo: "Metodología de <em>relevamiento</em>",
+      texto: "Así trabaja Arandu AI en cada relevamiento: grabamos la entrevista del día, armamos la bitácora persona por persona, relacionamos las áreas y resumimos por gerencia."
+    },
     nota: "Ayuda a nuestro equipo, no lo reemplaza: cada documento lo revisa y valida una persona, y las reuniones se graban solo con tu autorización.",
     /* pantalla de ejemplo (datos demostrativos) */
     /* pantallas de ejemplo de la aplicación (datos demostrativos):

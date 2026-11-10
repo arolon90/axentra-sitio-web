@@ -9,6 +9,13 @@
     document.getElementById('asistente-capacidades').innerHTML = (ia.capacidades || []).map(function (c) {
       return '<div class="capacidad"><span class="cap-icono">' + icono(c.icono) + '</span><div><strong>' + esc(c.titulo) + '</strong><span>' + esc(c.texto) + '</span></div></div>'; }).join('');
     document.getElementById('asistente-nota').textContent = ia.nota || '';
+    var mt = ia.metodologia, cabMetodo = document.querySelector('.asistente-metodo-cabeza');
+    if (cabMetodo) {
+      if (mt && mt.titulo) {
+        document.getElementById('asistente-metodo-titulo').innerHTML = mt.titulo;
+        document.getElementById('asistente-metodo-texto').textContent = mt.texto || '';
+      } else { cabMetodo.parentNode.removeChild(cabMetodo); }
+    }
     var cajaVid = document.getElementById('asistente-video');
     if (cajaVid) {
       if (ia.video) { cajaVid.innerHTML = AX.videoDe(ia, ia.nombre + ' trabajando: abre la laptop, ordena los datos del relevamiento y saluda'); AX.activarVideos(cajaVid); }

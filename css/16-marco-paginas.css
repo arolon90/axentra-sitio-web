@@ -55,21 +55,17 @@
 html.sin-scroll { overflow: hidden; }
 html.sin-scroll .wa-flotante { display: none; }
 
-/* Banda final de cada página: invitación a contactar y "Siguiente" */
-.cierre-banda { position: relative; overflow: hidden; color: #fff; padding: 56px 0;
-  background: radial-gradient(600px 300px at 90% 0%, rgba(0, 196, 224, .3), transparent 60%), linear-gradient(135deg, var(--marino), #0b3a78); }
-.cierre-grilla { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 32px; align-items: center; }
-.cierre-texto { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; }
-.cierre-texto b { flex-basis: 100%; font: 700 clamp(1.35rem, 2.6vw, 1.75rem) var(--titulos); }
-.cierre-texto span { flex: 1 1 320px; color: #c9d6e8; }
-.cierre-siguiente { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 18px; align-items: center; min-width: 280px; padding: 18px 22px; border-radius: 16px;
-  color: #fff; text-decoration: none; background: rgba(255, 255, 255, .08); border: 1px solid rgba(255, 255, 255, .22); transition: background .2s ease, transform .2s ease; }
-.cierre-siguiente:hover { background: rgba(255, 255, 255, .14); transform: translateY(-2px); }
-.cierre-siguiente small { color: #9fc4ff; font: 700 .72rem var(--titulos); letter-spacing: .08em; text-transform: uppercase; }
-.cierre-siguiente b { grid-column: 1; font: 700 1.1rem var(--titulos); }
-.cierre-siguiente i { grid-column: 2; grid-row: 1 / span 2; font-style: normal; font-size: 1.6rem; transition: transform .2s ease; }
-.cierre-siguiente:hover i { transform: translateX(4px); }
-@media (max-width: 760px) { .cierre-grilla { grid-template-columns: 1fr; } .cierre-siguiente { min-width: 0; } }
+/* "Siguiente": enlace a la página que sigue, antes del pie */
+.siguiente-barra { background: var(--gris); border-top: 1px solid var(--borde); padding: 26px 0; }
+.siguiente-barra .contenedor { display: flex; justify-content: flex-end; }
+.siguiente { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 18px; align-items: center; min-width: 280px; padding: 14px 20px; border-radius: 14px;
+  background: #fff; border: 1px solid var(--borde); color: var(--marino); text-decoration: none; transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.siguiente:hover { border-color: var(--azul); box-shadow: 0 14px 30px rgba(0, 31, 64, .1); transform: translateY(-2px); }
+.siguiente small { color: var(--azul); font: 700 .72rem var(--titulos); letter-spacing: .08em; text-transform: uppercase; }
+.siguiente b { grid-column: 1; font: 700 1.05rem var(--titulos); }
+.siguiente i { grid-column: 2; grid-row: 1 / span 2; font-style: normal; font-size: 1.5rem; color: var(--azul); transition: transform .2s ease; }
+.siguiente:hover i { transform: translateX(4px); }
+@media (max-width: 560px) { .siguiente-barra .contenedor { display: block; } .siguiente { min-width: 0; } }
 
 /* Pie: marca + 3 columnas de enlaces + contacto */
 .pie-grilla { grid-template-columns: minmax(0, 1.5fr) repeat(4, minmax(0, 1fr)); gap: 32px; }
@@ -95,3 +91,6 @@ html.sin-scroll .wa-flotante { display: none; }
   appearance: none; -webkit-appearance: none; transition: border-color .2s ease, box-shadow .2s ease, background-color .2s ease;
   background: var(--gris) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23001f40' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center / 18px; }
 .contacto .formulario select:focus { background-color: #fff; border-color: var(--azul); box-shadow: 0 0 0 4px rgba(0, 86, 255, .15); outline: none; }
+
+/* Al llegar a una sección por enlace (ej. index.html#clientes), que el encabezado fijo no tape su título */
+main section[id], main [id].pestana-panel { scroll-margin-top: 84px; }
