@@ -27,7 +27,7 @@ Los enlaces viejos de la página única (por ejemplo `axentra-ai.com.py/#contact
 datos/                  LO QUE SE EDITA: un archivo por sección, más menu.js (menú, pie y orden de páginas)
 css/                    diseño (colores, tamaños, efectos), en orden numerado
 js/base.js              ayudas comunes (carruseles, íconos, pestañas, video)
-js/marco.js             encabezado, menú (con desplegable y ☰ en celular), banda final con "Siguiente" y pie
+js/marco.js             encabezado, menú (con desplegable y ☰ en celular), enlace "Siguiente" y pie
 js/secciones/           cómo se dibuja cada sección a partir de sus datos
 js/pestanas.js, js/efectos.js, js/whatsapp-flotante.js
 assets/                 imágenes, logos, fotos, tipografías e íconos
@@ -37,7 +37,7 @@ assets/                 imágenes, logos, fotos, tipografías e íconos
 
 | Para cambiar…                                         | Archivo                    |
 |-------------------------------------------------------|----------------------------|
-| Menú, pie de página, orden de páginas y banda final   | `datos/menu.js`            |
+| Menú, pie de página y orden de páginas ("Siguiente") | `datos/menu.js`            |
 | "¿Qué hacemos?" del inicio (una tarjeta por página)   | `datos/inicio.js`          |
 | WhatsApp, correo, ciudad, motivos del formulario y carruseles | `datos/general.js` |
 | Módulos y aplicaciones de la portada                  | `datos/portada.js`         |

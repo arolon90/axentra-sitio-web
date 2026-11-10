@@ -37,8 +37,5 @@ Object.assign(window.SITIO, {
       { titulo: "Servicios", enlaces: [{ pagina: "consultoria" }, { pagina: "implementacion" }, { pagina: "automatizacion" }, { pagina: "dnit" }] },
       { titulo: "La empresa", enlaces: [{ texto: "Clientes", url: "index.html#clientes" }, { pagina: "equipo" }] }
     ]
-  },
-
-  /* Banda final de cada página (antes del pie) */
-  cierre: { titulo: "¿Hablamos de tu empresa?", texto: "Empezamos con una reunión por Google Meet para entender cómo trabajan.", boton: "Contactanos" }
+  }
 });

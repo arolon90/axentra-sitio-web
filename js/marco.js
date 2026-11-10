@@ -60,18 +60,13 @@
     if (cab.classList.contains('menu-abierto')) { menuBoton.click(); menuBoton.focus(); }
   });
 
-  /* ---------- banda final: invitación a contactar y "Siguiente" ---------- */
+  /* ---------- "Siguiente": la página que sigue en el orden de datos/menu.js (la invitación a contactar está en el pie) ---------- */
   var main = document.getElementById('contenido') || document.querySelector('main');
   var idx = -1; paginas.forEach(function (p, i) { if (p.id === actual) { idx = i; } });
-  var sig = idx >= 0 && idx < paginas.length - 1 ? paginas[idx + 1] : null, ci = d.cierre || {}, contacto = pag('contacto');
-  var banda = '';
-  if (actual !== 'contacto') {
-    banda = '<section class="cierre-banda"><div class="contenedor cierre-grilla">' +
-      '<div class="cierre-texto"><b>' + esc(ci.titulo || '') + '</b><span>' + esc(ci.texto || '') + '</span>' +
-      (contacto ? '<a class="boton primario" href="' + esc(contacto.url) + '">' + esc(ci.boton || 'Contactanos') + '</a>' : '') + '</div>' +
-      (sig && sig.id !== 'contacto' ? '<a class="cierre-siguiente" href="' + esc(sig.url) + '"><small>Siguiente</small><b>' + esc(sig.nombre) + '</b><i aria-hidden="true">→</i></a>' : '') +
-      '</div></section>';
-  }
+  var sig = idx >= 0 && idx < paginas.length - 1 ? paginas[idx + 1] : null, contacto = pag('contacto');
+  var banda = sig && sig.id !== 'contacto'
+    ? '<nav class="siguiente-barra" aria-label="Página siguiente"><div class="contenedor"><a class="siguiente" href="' + esc(sig.url) + '"><small>Siguiente</small><b>' + esc(sig.nombre) + '</b><i aria-hidden="true">→</i></a></div></nav>'
+    : '';
 
   /* ---------- pie ---------- */
   var c = d.contacto || {}, pie = d.pie || { columnas: [] };
