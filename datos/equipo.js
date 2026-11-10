@@ -20,6 +20,7 @@ Object.assign(window.SITIO, {
       correo: "arolon@axentra-ai.com.py",
       cv: [
         "Licenciado en Ciencias Informáticas con énfasis en Análisis de Sistemas y Máster en Administración y Dirección de Empresas.",
+        "Lidera las implementaciones de Odoo: relevamiento de procesos, parametrización multiempresa y capacitación.",
         "Desarrolla chatbots con inteligencia artificial en modalidad SaaS."
       ] }
   ],
