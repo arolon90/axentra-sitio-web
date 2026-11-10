@@ -33,10 +33,6 @@
 .caso:hover .caso-flujo li { animation: pasoFlujo .45s ease forwards; animation-delay: calc(var(--k) * .18s); }
 @keyframes pasoFlujo { to { background: color-mix(in srgb, var(--c) 12%, #fff); border-color: color-mix(in srgb, var(--c) 40%, transparent); color: var(--c); } }
 .auto-nota { margin: 18px 0 0; font-size: .86rem; color: var(--suave); }
-.auto-cierre { margin-top: 30px; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; padding: 22px 26px; border-radius: 20px; color: #fff;
-  background: radial-gradient(80% 140% at 100% 0%, rgba(124, 92, 255, .45), transparent 60%), linear-gradient(135deg, #001f40, #0a3b80); }
-.auto-cierre b { display: block; font: 700 1.2rem var(--titulos); }
-.auto-cierre span { color: #c9d6e8; }
 @media (max-width: 1000px) { .casos { grid-template-columns: 1fr 1fr; } .auto-cabeza { grid-template-columns: 1fr; gap: 28px; } }
 @media (max-width: 640px) {
   .casos { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 14px; margin: 22px -20px 0; padding: 4px 20px 16px; scrollbar-width: none; }
