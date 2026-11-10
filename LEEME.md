@@ -15,7 +15,8 @@ no hace falta tocar el diseño (`css/`) ni la programación (`js/`).
 | Implementaciones y soporte | `implementacion.html` | Servicios y, como último apartado, normativa DNIT y SIFEN |
 | IA y automatización      | `automatizacion.html` | Casos por industria                                    |
 | Nuestro equipo           | `equipo.html`         | Equipo y Arandu AI                                     |
-| Contacto                 | `contacto.html`       | Formulario, WhatsApp, correo y preguntas frecuentes    |
+| Preguntas frecuentes     | `preguntas.html`      | Preguntas frecuentes y consulta por WhatsApp           |
+| Contacto                 | `contacto.html`       | Formulario, WhatsApp y correo                          |
 
 Los enlaces viejos de la página única (por ejemplo `axentra-ai.com.py/#contacto`) llevan solos a su página nueva.
 

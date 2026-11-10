@@ -14,6 +14,7 @@ Object.assign(window.SITIO, {
     { id: "automatizacion", url: "automatizacion.html", nombre: "IA y automatización" },
     { id: "implementacion", url: "implementacion.html", nombre: "Implementaciones y soporte" },
     { id: "equipo",         url: "equipo.html",         nombre: "Nuestro equipo" },
+    { id: "preguntas",      url: "preguntas.html",      nombre: "Preguntas frecuentes" },
     { id: "contacto",       url: "contacto.html",       nombre: "Contacto" }
   ],
 
@@ -23,7 +24,8 @@ Object.assign(window.SITIO, {
       { pagina: "odoo" },
       { pagina: "arandu" },
       { texto: "Servicios", sub: ["consultoria", "automatizacion", "implementacion"] },
-      { pagina: "equipo" }
+      { pagina: "equipo" },
+      { pagina: "preguntas" }
     ],
     boton: { texto: "Contactanos", pagina: "contacto" }
   },
@@ -32,7 +34,7 @@ Object.assign(window.SITIO, {
   pie: {
     texto: "Consultoría de procesos e implementación de Odoo para empresas paraguayas: relevamiento, normativa DNIT, inteligencia artificial y soporte.",
     columnas: [
-      { titulo: "Conocé", enlaces: [{ pagina: "odoo" }, { pagina: "arandu" }, { texto: "Preguntas frecuentes", url: "contacto.html#preguntas" }] },
+      { titulo: "Conocé", enlaces: [{ pagina: "odoo" }, { pagina: "arandu" }, { pagina: "preguntas" }] },
       { titulo: "Servicios", enlaces: [{ pagina: "consultoria" }, { pagina: "automatizacion" }, { pagina: "implementacion" }, { texto: "Normativa DNIT y SIFEN", url: "implementacion.html#normativa" }] },
       { titulo: "La empresa", enlaces: [{ texto: "Clientes", url: "index.html#clientes" }, { pagina: "equipo" }] }
     ]

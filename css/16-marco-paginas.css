@@ -28,7 +28,7 @@
 .desp-lista a.activo { color: var(--azul); font-weight: 600; background: rgba(0, 86, 255, .06); }
 .desplegable.abierto .desp-lista { display: block; }
 .desplegable.abierto .desp-boton svg { transform: rotate(180deg); }
-@media (hover: hover) and (min-width: 961px) {
+@media (hover: hover) and (min-width: 1041px) {
   .desplegable:hover .desp-lista { display: block; }
   .desplegable:hover .desp-boton svg { transform: rotate(180deg); }
 }
@@ -36,7 +36,7 @@
 
 /* Menú de celular (☰) */
 .menu-boton { display: none; }
-@media (max-width: 960px) {
+@media (max-width: 1040px) {
   .menu-boton { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 5px; width: 44px; height: 44px; margin-left: auto; padding: 0; border: 0; border-radius: 10px; background: none; cursor: pointer; }
   .menu-boton span { width: 24px; height: 2px; border-radius: 2px; background: var(--marino); transition: transform .25s ease, opacity .2s ease; }
   .menu-abierto .menu-boton span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
