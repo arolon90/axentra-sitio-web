@@ -18,7 +18,7 @@ Object.assign(window.SITIO, {
       { pagina: "implementacion", icono: "i:soporte", color: "#db2777", titulo: "Implementaciones y soporte",
         texto: "Implementamos Odoo, desarrollamos lo que haga falta, capacitamos a tu equipo y te acompañamos después." },
       { pagina: "implementacion", url: "implementacion.html#normativa", icono: "i:normativa", color: "#0891b2", titulo: "DNIT y SIFEN",
-        texto: "Odoo no viene preparado para Paraguay: le sumamos la contabilidad según la DNIT, la factura electrónica (SIFEN) y la firma digital." }
+        texto: "Contabilidad y factura electrónica SIFEN listas para la DNIT, con firma digital. Facturás y declarás en regla desde el primer día." }
     ]
   }
 });
