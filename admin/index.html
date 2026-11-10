@@ -28,14 +28,14 @@
     <label class="campo"><span>Token de acceso de GitHub</span>
       <input type="password" id="token" placeholder="github_pat_…" required spellcheck="false">
     </label>
-    <label class="check"><input type="checkbox" id="recordar"> Recordarme en esta computadora</label>
+    <label class="check"><input type="checkbox" id="recordar"> Recordarme en este dispositivo</label>
     <button type="submit" class="boton primario ancho" id="boton-ingresar">Ingresar</button>
     <p class="error" id="error-ingreso" role="alert"></p>
     <details class="ayuda">
       <summary>¿Cómo obtengo mi token? (una sola vez)</summary>
       <ol>
-        <li>Entrá a GitHub con tu cuenta y abrí <b>Settings → Developer settings → Personal access tokens → Fine-grained tokens</b>.</li>
-        <li>Tocá <b>Generate new token</b>. Nombre: <i>Panel página AXENTRA</i>. Vencimiento: el que prefieras (por ejemplo, 1 año).</li>
+        <li>Abrí este enlace (en el celular, desde el navegador, no desde la app de GitHub): <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener"><b>crear token en GitHub</b></a>. Si te lo pide, iniciá sesión.</li>
+        <li>Nombre (<b>Token name</b>): <i>Panel página AXENTRA</i>. Vencimiento (<b>Expiration</b>): el que prefieras, por ejemplo 1 año.</li>
         <li>En <b>Repository access</b> elegí <b>Only select repositories</b> y marcá <b id="ayuda-repo"></b>.</li>
         <li>En <b>Permissions → Repository permissions</b>, poné <b>Contents</b> en <b>Read and write</b>.</li>
         <li>Tocá <b>Generate token</b>, copiá el texto que empieza con <code>github_pat_</code> y pegalo acá.</li>
