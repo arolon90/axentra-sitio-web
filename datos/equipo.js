@@ -17,7 +17,7 @@ Object.assign(window.SITIO, {
         "Ocho años en sistemas y gestión de datos en el sector salud.",
         "Más de diez años coordinando proyectos, equipos y procesos institucionales; docente universitario."
       ] },
-    { nombre: "Mag. Alcides C. Rolón F.", rol: "Co-Fundador y Socio · AXENTRA AI Paraguay", especialidad: "Especialista en Datos, Inteligencia de Negocios con más de 12 años de experiencia", iniciales: "AR", color: "#0056ff", foto: "assets/equipo/alcides.jpg", visible: true,
+    { nombre: "Mgtr. Alcides C. Rolón F.", rol: "Co-Fundador y Socio · AXENTRA AI Paraguay", especialidad: "Especialista en Datos, Inteligencia de Negocios con más de 12 años de experiencia", iniciales: "AR", color: "#0056ff", foto: "assets/equipo/alcides.jpg", visible: true,
       correo: "arolon@axentra-ai.com.py",
       cv: [
         "Licenciado en Ciencias Informáticas con énfasis en Análisis de Sistemas y Máster en Administración y Dirección de Empresas.",

@@ -148,7 +148,9 @@ h2 em, .normativa h2 em, .asistente h2 em { color: var(--azul); -webkit-text-fil
 
 /* Carrusel de ejemplos de entregables */
 .ejemplos { min-width: 0; }
-.ej-marco { clip-path: inset(-40px 0 -50px 0); padding: 6px 0 30px; }
+.ej-marco { clip-path: inset(-40px 0 -50px 0); padding: 6px 0 30px; overflow: hidden; }
+/* las diapositivas de los costados no deben ensanchar la página (en tablet/celular el navegador achicaba todo) */
+@supports (overflow: clip) { .ej-marco { overflow-x: clip; overflow-y: visible; } }
 .ej-pista { display: flex; transition: transform .7s cubic-bezier(.65, 0, .35, 1); touch-action: pan-y; }
 .ej-slide { flex: 0 0 100%; min-width: 0; padding: 0 2px; }
 .ej-slide .doc-demo { height: 100%; transform: none; box-shadow: 0 22px 50px rgba(0, 31, 64, .16); }
