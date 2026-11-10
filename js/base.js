@@ -69,22 +69,31 @@
         return '<button type="button" class="pestana" role="tab" id="tab-' + prefijo + n + '" aria-controls="panel-' + prefijo + n + '"' + (x.color ? ' style="--color:' + esc(x.color) + '"' : '') + '>' + boton(x) + '</button>'; }).join('') + '</div>' +
       lista.map(function (x, n) { return '<div class="pestana-panel" role="tabpanel" id="panel-' + prefijo + n + '" aria-labelledby="tab-' + prefijo + n + '">' + panel(x) + '</div>'; }).join('');
   };
-  /* video en loop (sin sonido) del asistente: WebM liviano y MP4 de respaldo.
-     Con "reducir movimiento" activado no arranca solo: queda la imagen con el botón de reproducir. */
+  /* video en loop (sin sonido) del asistente: WebM liviano y MP4 de respaldo. Arranca solo, sin que haya que darle play. */
   var videoDe = function (x, etiqueta) {
     if (!x || !x.video) { return ''; }
-    var quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    return '<video' + (quieto ? ' controls' : ' autoplay') + ' muted loop playsinline preload="metadata"' + (x.videoPoster ? ' poster="' + esc(x.videoPoster) + '"' : '') + ' aria-label="' + esc(etiqueta) + '">' +
+    return '<video autoplay muted loop playsinline preload="auto"' + (x.videoPoster ? ' poster="' + esc(x.videoPoster) + '"' : '') + ' aria-label="' + esc(etiqueta) + '">' +
       (x.videoWebm ? '<source src="' + esc(x.videoWebm) + '" type="video/webm">' : '') + '<source src="' + esc(x.video) + '" type="video/mp4"></video>';
   };
-  /* reproduce los videos automáticos solo mientras se ven (arrancan seguro y ahorran batería) */
+  /* reproduce los videos automáticos mientras se ven y los pausa fuera de pantalla (ahorra batería).
+     Si el navegador frena la reproducción automática (ahorro de batería, datos), arranca con el primer toque o movimiento. */
   var activarVideos = function (caja) {
     if (!caja) { return; }
     [].forEach.call(caja.querySelectorAll('video[autoplay]'), function (v) {
-      v.muted = true;
-      if (!('IntersectionObserver' in window)) { var p0 = v.play(); if (p0 && p0.catch) { p0.catch(function () {}); } return; }
+      v.muted = true; v.defaultMuted = true; v.setAttribute('muted', '');
+      var visible = true, eventos = ['pointerdown', 'touchstart', 'keydown', 'scroll', 'wheel'];
+      var reintentar = function () { if (visible) { reproducir(); } };
+      var reproducir = function () {
+        var p = v.play();
+        if (p && p.then) {
+          p.then(function () { eventos.forEach(function (ev) { window.removeEventListener(ev, reintentar, true); }); })
+           .catch(function () { eventos.forEach(function (ev) { window.addEventListener(ev, reintentar, { capture: true, passive: true }); }); });
+        }
+      };
+      if (!('IntersectionObserver' in window)) { reproducir(); return; }
       new IntersectionObserver(function (es) { es.forEach(function (e) {
-        if (e.isIntersecting) { var p = v.play(); if (p && p.catch) { p.catch(function () {}); } } else { v.pause(); }
+        visible = e.isIntersecting;
+        if (visible) { reproducir(); } else { v.pause(); }
       }); }, { threshold: 0.25 }).observe(v);
     });
   };
