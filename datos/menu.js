@@ -14,7 +14,6 @@ Object.assign(window.SITIO, {
     { id: "implementacion", url: "implementacion.html", nombre: "Implementación y soporte" },
     { id: "automatizacion", url: "automatizacion.html", nombre: "IA y automatización" },
     { id: "dnit",           url: "dnit-sifen.html",     nombre: "DNIT y SIFEN" },
-    { id: "clientes",       url: "clientes.html",       nombre: "Clientes" },
     { id: "equipo",         url: "equipo.html",         nombre: "Nuestro equipo" },
     { id: "contacto",       url: "contacto.html",       nombre: "Contacto" }
   ],
@@ -25,7 +24,6 @@ Object.assign(window.SITIO, {
       { pagina: "odoo" },
       { pagina: "arandu" },
       { texto: "Servicios", sub: ["consultoria", "implementacion", "automatizacion", "dnit"] },
-      { pagina: "clientes" },
       { pagina: "equipo" }
     ],
     boton: { texto: "Contactanos", pagina: "contacto" }
@@ -37,7 +35,7 @@ Object.assign(window.SITIO, {
     columnas: [
       { titulo: "Conocé", enlaces: [{ pagina: "odoo" }, { pagina: "arandu" }, { texto: "Preguntas frecuentes", url: "contacto.html#preguntas" }] },
       { titulo: "Servicios", enlaces: [{ pagina: "consultoria" }, { pagina: "implementacion" }, { pagina: "automatizacion" }, { pagina: "dnit" }] },
-      { titulo: "La empresa", enlaces: [{ pagina: "clientes" }, { pagina: "equipo" }] }
+      { titulo: "La empresa", enlaces: [{ texto: "Clientes", url: "index.html#clientes" }, { pagina: "equipo" }] }
     ]
   },
 

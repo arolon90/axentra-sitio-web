@@ -26,11 +26,8 @@
   } else { cajaSocios.innerHTML = htmlSocios; }
   var cajaIaEq = document.getElementById('equipo-ia');
   if (cajaIaEq && iaEq && iaEq.visible !== false) {
-    var tarjetaIa = '<a class="persona persona-ia"' + personas.split('<a class="persona persona-ia"')[1];
-    var vid = iaEq.video ? AX.videoDe(iaEq, iaEq.nombre + ' en acción')
-      : '<div class="video-reserva">' + (iaEq.videoPoster ? '<img src="' + esc(iaEq.videoPoster) + '" alt="">' : '') + '<span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></svg></span><b>' + esc(iaEq.nombre) + ' en acción</b><small>Video próximamente</small></div>';
-    cajaIaEq.innerHTML = tarjetaIa + '<div class="equipo-video">' + vid + '</div>';
-    AX.activarVideos(cajaIaEq);
+    /* solo su tarjeta de presentación: el video está en su página (arandu-ai.html) */
+    cajaIaEq.innerHTML = '<a class="persona persona-ia"' + personas.split('<a class="persona persona-ia"')[1];
   }
   var cajaValores = document.getElementById('equipo-valores');
   if (cajaValores) { cajaValores.innerHTML = (d.equipoValores || []).map(function (v, n) {

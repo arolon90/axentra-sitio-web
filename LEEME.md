@@ -8,14 +8,13 @@ no hace falta tocar el diseño (`css/`) ni la programación (`js/`).
 
 | Página                   | Archivo               | Qué tiene                                              |
 |--------------------------|-----------------------|--------------------------------------------------------|
-| Inicio                   | `index.html`          | Portada, partners, "¿Qué hacemos?" y clientes          |
+| Inicio                   | `index.html`          | Portada, partners, "¿Qué hacemos?", clientes y testimonios |
 | ¿Qué es Odoo?            | `odoo.html`           | Qué es Odoo, sus áreas y "Así se ve en Odoo"           |
 | Arandu AI                | `arandu-ai.html`      | Presentación con video, capacidades y app de ejemplo   |
 | Consultoría y procesos   | `consultoria.html`    | Antes y después, método y entregables                  |
 | Implementación y soporte | `implementacion.html` | Servicios                                              |
 | IA y automatización      | `automatizacion.html` | Casos por industria                                    |
 | DNIT y SIFEN             | `dnit-sifen.html`     | Normativa y factura electrónica                        |
-| Clientes                 | `clientes.html`       | Partners, clientes y testimonios                       |
 | Nuestro equipo           | `equipo.html`         | Equipo y Arandu AI                                     |
 | Contacto                 | `contacto.html`       | Formulario, WhatsApp, correo y preguntas frecuentes    |
 
@@ -64,7 +63,7 @@ assets/                 imágenes, logos, fotos, tipografías e íconos
 - **Testimonios**: están cargados con texto de ejemplo y ocultos. Se activan con `visible: true` cuando
   haya frases reales.
 - **Video de Arandu AI**: va en `assets/arandu/` y su ruta en `video` (MP4), `videoWebm` (versión liviana, opcional) y
-  `videoPoster` (imagen mientras carga), en `datos/asistente.js`. Se muestra en la presentación de Arandu AI y en Equipo.
+  `videoPoster` (imagen mientras carga), en `datos/asistente.js`. Se muestra en la página de Arandu AI.
 
 ## Botones y formulario de contacto
 
@@ -74,7 +73,7 @@ formulario llega con ese motivo ya elegido y el mensaje de WhatsApp lo incluye. 
 
 ## Página nueva
 
-1. Copiar una página parecida (por ejemplo `clientes.html`), cambiar `<title>`, la descripción, `data-pagina` y
+1. Copiar una página parecida (por ejemplo `equipo.html`), cambiar `<title>`, la descripción, `data-pagina` y
    las secciones de adentro de `<main>`.
 2. Sumarla en `paginas` de `datos/menu.js` (con el mismo id que `data-pagina`) y, si va en el menú, en `menu.opciones`.
 
