@@ -3,7 +3,7 @@
   var selector = '.tarjeta, .cliente, .persona, .testimonio, .partner, .entregable';
   document.querySelectorAll(selector).forEach(function (el) { el.classList.add('efecto-luz'); });
   document.addEventListener('pointermove', function (ev) {
-    var el = ev.target.closest && ev.target.closest('.efecto-luz, .area, .camino');
+    var el = ev.target.closest && ev.target.closest('.efecto-luz, .area');
     if (!el) { return; }
     var r = el.getBoundingClientRect();
     el.style.setProperty('--mx', (ev.clientX - r.left) + 'px');

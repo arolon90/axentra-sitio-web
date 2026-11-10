@@ -2,7 +2,8 @@
 .equipo-grilla { align-items: start; }
 .equipo-ia { display: grid; gap: 14px; min-width: 0; }
 .equipo-video { position: relative; aspect-ratio: 16 / 9; border-radius: 20px; overflow: hidden; background: #06142b; box-shadow: 0 24px 54px rgba(0, 31, 64, .2); }
-.equipo-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.equipo-video video { height: 100%; width: auto; aspect-ratio: 1 / 1; margin: 0 auto; object-fit: cover; display: block;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent); }
 .video-reserva { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 6px; color: #fff; text-align: center;
   background: radial-gradient(60% 70% at 50% 40%, rgba(124, 92, 255, .45), transparent 70%), linear-gradient(135deg, #06142b, #1b1550); }
 .video-reserva img { position: absolute; right: -4%; bottom: -14%; width: 50%; opacity: .55; pointer-events: none; mix-blend-mode: lighten;
@@ -24,3 +25,12 @@
 .equipo.socios.en-carrusel .persona { flex: 0 0 540px; height: auto; transform: none; }
 .equipo.socios.en-carrusel .persona:hover { transform: translateY(-4px); }
 @media (max-width: 640px) { .equipo.socios.en-carrusel .persona { flex-basis: 84vw; } }
+
+/* Arandu AI: presentación con su video (arriba) y capacidades junto a la aplicación (abajo) */
+.asistente-presentacion { align-items: center; margin-bottom: 64px; }
+.asistente-presentacion.sin-video { grid-template-columns: minmax(0, 1fr); }
+.asistente-video { position: relative; justify-self: center; width: 100%; max-width: 500px; aspect-ratio: 1 / 1; border-radius: 24px; overflow: hidden; background: #06142b;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, .45), 0 0 0 1px rgba(168, 145, 255, .35); }
+.asistente-video video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.asistente-detalle .capacidades { margin-top: 0; align-self: center; }
+@media (max-width: 900px) { .asistente-presentacion { margin-bottom: 48px; } .asistente-video { max-width: 440px; } }

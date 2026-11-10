@@ -9,8 +9,12 @@ Object.assign(window.SITIO, {
     nombre: "Arandu AI",
     significado: "arandu es «sabiduría» en guaraní",
     logo: "assets/arandu/avatar.png",   /* foto de perfil de Arandu AI (la cabeza del robot) */
-    video: "",   /* video en loop de Arandu AI trabajando (ej. "assets/arandu/arandu.mp4"); vacío = se muestra el espacio reservado */
-    videoPoster: "assets/arandu/robot.webp",
+    /* video en loop de Arandu AI trabajando (se muestra en su presentación y en Equipo).
+       video = MP4 (obligatorio) · videoWebm = versión más liviana (opcional) · videoPoster = imagen mientras carga.
+       video vacío ("") = en Equipo se muestra el espacio reservado y en la presentación no hay video. */
+    video: "assets/arandu/arandu-ai-loop.mp4",
+    videoWebm: "assets/arandu/arandu-ai-loop.webm",
+    videoPoster: "assets/arandu/arandu-ai-poster.jpg",
     texto: "Lo desarrollamos nosotros para el trabajo de relevamiento: escucha, transcribe y ordena lo que nos cuenta tu equipo. Así llegamos más rápido a los documentos y cumplimos los plazos, sin perder ningún detalle.",
     capacidades: [
       { icono: "i:microfono", titulo: "Transcribe cada entrevista", texto: "Las reuniones de relevamiento quedan escritas, con quién dijo qué." },

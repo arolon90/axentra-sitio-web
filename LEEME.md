@@ -22,7 +22,6 @@ assets/                 imágenes, logos, fotos, tipografías e íconos
 | WhatsApp, correo, ciudad y velocidad de los carruseles | `datos/general.js`         |
 | Módulos y aplicaciones de la portada                  | `datos/portada.js`         |
 | Áreas de Odoo, recorrido de una venta, pantallas      | `datos/odoo.js`            |
-| "Identificá tu camino"                                | `datos/caminos.js`         |
 | Consultoría: método, entregables y ejemplos           | `datos/consultoria.js`     |
 | Arandu AI (textos, pantallas de ejemplo, video)       | `datos/asistente.js`       |
 | Casos de IA y automatizaciones por industria          | `datos/automatizacion.js`  |
@@ -43,7 +42,8 @@ assets/                 imágenes, logos, fotos, tipografías e íconos
   2 personas; con 3 o más pasa solo a ser un carrusel con flechas (`carrusel.equipo` en `general.js`).
 - **Testimonios**: están cargados con texto de ejemplo y ocultos. Se activan con `visible: true` cuando
   haya frases reales.
-- **Video de Arandu AI**: poner el archivo en `assets/arandu/` y escribir su ruta en `video` (`datos/asistente.js`).
+- **Video de Arandu AI**: va en `assets/arandu/` y su ruta en `video` (MP4), `videoWebm` (versión liviana, opcional) y
+  `videoPoster` (imagen mientras carga), en `datos/asistente.js`. Se muestra en la presentación de Arandu AI y en Equipo.
 
 ## Antes de publicar
 
