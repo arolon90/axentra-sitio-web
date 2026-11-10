@@ -18,9 +18,11 @@
     }
     if (sv.visual === 'barras') { visual = '<div class="sv-barras" aria-hidden="true">' + [38, 62, 48, 80, 66, 92, 74, 98].map(function (h, k) { return '<i style="--h:' + h + '%;--i:' + k + '"></i>'; }).join('') + '</div>'; }
     if (sv.visual === 'rubros' && sv.chips) { var r = sv.chips.map(function (x) { return '<span>' + esc(x) + '</span>'; }).join(''); visual = '<div class="sv-rubros" aria-hidden="true"><div>' + r + r + '</div></div>'; }
-    return '<a class="tarjeta servicio-tarjeta' + (sv.tamano ? ' ' + sv.tamano : '') + '" href="' + esc(sv.enlace || 'contacto.html?motivo=implementacion') + '" style="--c:' + esc(c) + '">' +
+    /* tarjeta informativa; solo si tiene "enlace" en datos/servicios.js lleva a otra página con "Ver detalle →" */
+    var etiqueta = sv.enlace ? 'a' : 'div';
+    return '<' + etiqueta + ' class="tarjeta servicio-tarjeta' + (sv.tamano ? ' ' + sv.tamano : '') + '"' + (sv.enlace ? ' href="' + esc(sv.enlace) + '"' : '') + ' style="--c:' + esc(c) + '">' +
       '<span class="acento"></span><span class="icono-fondo">' + icono(sv.icono) + '</span><div class="icono">' + icono(sv.icono) + '</div><h3>' + esc(sv.titulo) + '</h3><p>' + esc(sv.texto) + '</p>' +
-      visual + '<span class="ver-mas">' + (sv.enlace ? 'Ver detalle' : 'Consultar') + ' →</span></a>';
+      visual + (sv.enlace ? '<span class="ver-mas">Ver detalle →</span>' : '') + '</' + etiqueta + '>';
   }).join('') + (d.serviciosCierre ? '<a class="tarjeta servicio-cierre" href="contacto.html?motivo=otro"><h3>' + esc(d.serviciosCierre.titulo) + '</h3><p>' + esc(d.serviciosCierre.texto) + '</p><span class="boton blanco">' + esc(d.serviciosCierre.boton) + ' →</span></a>' : '');
   var barras = cajaServ.querySelectorAll('.sv-barras, .sv-tablero');
   if ('IntersectionObserver' in window) {
