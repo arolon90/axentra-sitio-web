@@ -110,3 +110,14 @@ h1, h2, h3 { font-family: var(--titulos); color: var(--marino); margin: 0; }
   .barra-titulo { display: none; }
   .guardar { left: 12px; right: 12px; transform: none; flex-wrap: wrap; justify-content: flex-end; }
 }
+
+/* Vista previa de un partner */
+.previa-socio { width: 300px; padding: 14px; border-radius: 16px; background: var(--gris); display: grid; gap: 6px; }
+.previa-socio .logo { height: 80px; border-radius: 14px; background: #fff; border: 1px solid var(--borde); display: grid; place-items: center; padding: 14px 20px; margin-bottom: 6px; }
+.previa-socio .logo img { max-width: 78%; max-height: 46px; object-fit: contain; }
+.previa-socio .ini { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; color: #fff; font: 800 1.1rem var(--titulos); background: var(--c); }
+.previa-socio em { justify-self: start; font-style: normal; font: 700 .64rem var(--titulos); letter-spacing: .07em; text-transform: uppercase; color: var(--sc); padding: 3px 9px; border-radius: 999px;
+  background: color-mix(in srgb, var(--sc) 10%, #fff); border: 1px solid color-mix(in srgb, var(--sc) 25%, transparent); }
+.previa-socio h3 { font-size: 1rem; }
+.previa-socio small { color: var(--suave); font-size: .8rem; line-height: 1.35; }
+.previa-socio .ir { color: var(--sc); font-size: .72rem; font-weight: 700; word-break: break-all; }

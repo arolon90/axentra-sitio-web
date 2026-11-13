@@ -16,7 +16,7 @@
 
   var token = null;
   var estado = {
-    seccion: 'equipo', elegido: 0, cambios: { equipo: false, clientes: false },
+    seccion: 'equipo', elegido: 0, cambios: { equipo: false, clientes: false, partners: false },
     archivos: {},            /* ruta -> { sha, cabecera, datos } */
     imagenes: {}             /* ruta en assets -> { base64, url } pendientes de subir */
   };
@@ -54,13 +54,33 @@
         { k: 'color', t: 'Color', tipo: 'color' },
         { k: 'visible', t: 'Mostrar en la página', tipo: 'check', ancho: true }
       ]
+    },
+    partners: {
+      archivo: 'datos/clientes.js', clave: 'partners', titulo: 'Partners',
+      ayuda: 'Se muestran en la tarjeta de abajo de la portada, en este orden. Con más de 2 visibles, pasan a ser un carrusel con flechas.',
+      carpeta: 'assets/partners/', campoImagen: 'logo', retrato: false,
+      nuevo: function () { return { nombre: 'Nombre del partner', etiqueta: 'Partner', descripcion: 'Qué hacemos juntos', color: '#0056ff', logo: '', enlace: '', visible: true }; },
+      resumen: function (x) { return [x.nombre, x.etiqueta || x.distintivo || '']; },
+      campos: [
+        { k: 'nombre', t: 'Nombre del partner', ancho: true },
+        { k: 'etiqueta', t: 'Etiqueta (cápsula de color)', ayuda: 'Por ejemplo: "Odoo Official Partner" o "Partner legal".', ancho: true },
+        { k: 'descripcion', t: 'Descripción corta', ancho: true },
+        { k: 'enlace', t: 'Página web (opcional)', tipo: 'url', ayuda: 'Empieza con https://. Se abre en otra pestaña.', ancho: true },
+        { k: 'color', t: 'Color', tipo: 'color' },
+        { k: 'visible', t: 'Mostrar en la página', tipo: 'check', ancho: true }
+      ]
     }
   };
+  var LISTA_SECCIONES = Object.keys(SECCIONES);
+  var archivosDeSecciones = function () { var r = []; LISTA_SECCIONES.forEach(function (s) { if (r.indexOf(SECCIONES[s].archivo) < 0) { r.push(SECCIONES[s].archivo); } }); return r; };
+  var cargarTodos = function () { return Promise.all(archivosDeSecciones().map(function (a) { return cargarArchivo(a); })); };
   /* Comentarios que se escriben en los archivos al guardar */
   var COMENTARIOS = {
     equipo: 'EQUIPO: para sumar a alguien, usar el panel (admin/) o copiar un bloque { ... } completo y cambiar los datos.\n     foto: ruta de la foto en assets/equipo/ (vertical, idealmente 400 × 500). Si se deja "", se muestran las iniciales.\n     cv: hasta 5 líneas por persona · especialidad (opcional): línea final · visible: false lo oculta sin borrarlo.\n     Con más de 2 personas visibles, la fila pasa a ser un carrusel (ver carrusel.equipo).',
     equipoValores: 'Lo que nos define (se muestra junto al equipo)',
     clientes: 'CLIENTES: cada tarjeta muestra el logo y tres líneas de texto.\n     nombre = título · rubro = subtítulo · detalle = tercera línea (opcional, por ejemplo "Parte de Grupo Noroda").\n     Si "logo" se deja "", se muestran las iniciales con el color indicado. visible: false lo oculta sin borrarlo.',
+    partners: 'PARTNERS: se muestran en la tarjeta de abajo de la portada, en este orden.\n     nombre = título · etiqueta = cápsula de color · descripcion = texto corto · enlace = página del partner (se abre en otra pestaña).\n     Con más de 2 visibles, la fila pasa a ser un carrusel (ver carrusel.partners en general.js). visible: false lo oculta sin borrarlo.',
+    partnersTexto: 'Texto de la tarjeta de partners: los nombres se agregan solos ("Trabajamos de la mano de Odoo y Code100 …")',
     testimonios: 'Testimonios: ocultos hasta tener frases reales (visible: true para mostrarlos)'
   };
 
@@ -150,7 +170,7 @@
       guardarAlmacen('sessionStorage', t); guardarAlmacen('localStorage', recordar ? t : null);
       $('usuario-nombre').textContent = usuario.name || usuario.login;
       if (usuario.avatar_url) { $('usuario-foto').src = usuario.avatar_url; } else { $('usuario-foto').hidden = true; }
-      return Promise.all([cargarArchivo(SECCIONES.equipo.archivo), cargarArchivo(SECCIONES.clientes.archivo)]);
+      return cargarTodos();
     }).then(function () {
       $('vista-ingreso').hidden = true; $('vista-panel').hidden = false; $('barra-usuario').hidden = false;
       elegirSeccion('equipo');
@@ -171,7 +191,7 @@
 
   /* ---------------------------------------------------------------- lista y editor */
   var lista = function () { var s = SECCIONES[estado.seccion]; return estado.archivos[s.archivo].datos[s.clave]; };
-  var hayCambios = function () { return estado.cambios.equipo || estado.cambios.clientes; };
+  var hayCambios = function () { return LISTA_SECCIONES.some(function (s) { return estado.cambios[s]; }); };
   var marcarCambio = function () {
     estado.cambios[estado.seccion] = true;
     $('barra-guardar').hidden = false; $('estado-guardar').textContent = 'Hay cambios sin guardar';
@@ -213,12 +233,17 @@
       (img ? '<button type="button" class="boton chico secundario" id="quitar-imagen">Quitar</button>' : '') +
       '<small class="sub">PNG, JPG, WEBP o SVG, hasta 2 MB.' + (s.retrato ? ' Ideal: 400 × 500.' : ' Ideal: fondo transparente.') + '</small></div></div></div>';
     $('editor').innerHTML = '<div class="editor-cabeza"><h2>' + esc(x.nombre || 'Sin nombre') + '</h2><button type="button" class="boton chico peligro" id="boton-eliminar">Eliminar</button></div>' +
-      '<div class="formulario">' + imagen + campos + '</div>' + (estado.seccion === 'clientes' ? '<div class="vista-previa"><span>Así se ve en la página</span><div id="previa"></div></div>' : '');
+      '<div class="formulario">' + imagen + campos + '</div>' + (estado.seccion === 'clientes' || estado.seccion === 'partners' ? '<div class="vista-previa"><span>Así se ve en la página</span><div id="previa"></div></div>' : '');
     actualizarPrevia(); contarLineas();
   };
   var actualizarPrevia = function () {
     var caja = $('previa'); if (!caja) { return; }
     var x = lista()[estado.elegido];
+    if (estado.seccion === 'partners') {
+      caja.innerHTML = '<div class="previa-socio" style="--sc:' + esc(x.color || '#0056ff') + '"><div class="logo">' + (x.logo ? '<img src="' + esc(urlImagen(x.logo)) + '" alt="">' : '<span class="ini" style="--c:' + esc(x.color || '#0056ff') + '">' + esc(iniciales(x)) + '</span>') + '</div>' +
+        ((x.etiqueta || x.distintivo) ? '<em>' + esc(x.etiqueta || x.distintivo) + '</em>' : '') + '<h3>' + esc(x.nombre) + '</h3><small>' + esc(x.descripcion) + '</small>' + (x.enlace ? '<span class="ir">↗ ' + esc(x.enlace) + '</span>' : '') + '</div>';
+      return;
+    }
     caja.innerHTML = '<div class="previa-cliente"><div class="logo">' + (x.logo ? '<img src="' + esc(urlImagen(x.logo)) + '" alt="">' : '<span class="ini" style="--c:' + esc(x.color || '#0056ff') + '">' + esc(iniciales(x)) + '</span>') + '</div>' +
       '<h3>' + esc(x.nombre) + '</h3><span class="rubro">' + esc(x.rubro) + '</span>' + (x.detalle ? '<span class="det">' + esc(x.detalle) + '</span>' : '') + '</div>';
   };
@@ -234,7 +259,7 @@
     var x = lista()[estado.elegido];
     if (el.type === 'checkbox') { x[k] = el.checked; }
     else if (el.getAttribute('data-tipo') === 'lineas') { x[k] = el.value.split('\n').map(function (l) { return l.trim(); }).filter(Boolean).slice(0, +el.getAttribute('data-max')); contarLineas(); }
-    else if (el.value === '' && (k === 'especialidad' || k === 'detalle')) { delete x[k]; }
+    else if (el.value === '' && (k === 'especialidad' || k === 'detalle' || k === 'enlace')) { delete x[k]; }
     else { x[k] = el.value; }
     marcarCambio(); pintarLista(); actualizarPrevia();
     if (k === 'nombre') { var h = document.querySelector('.editor-cabeza h2'); if (h) { h.textContent = x.nombre || 'Sin nombre'; } }
@@ -261,7 +286,7 @@
   var guardar = function () {
     var boton = $('boton-guardar'); boton.disabled = true; boton.textContent = 'Guardando…'; $('estado-guardar').textContent = 'Subiendo los cambios…';
     var usadas = {};
-    ['equipo', 'clientes'].forEach(function (s) {
+    LISTA_SECCIONES.forEach(function (s) {
       if (!estado.cambios[s]) { return; }
       var c = SECCIONES[s]; estado.archivos[c.archivo].datos[c.clave].forEach(function (x) { if (x[c.campoImagen]) { usadas[x[c.campoImagen]] = true; } });
     });
@@ -271,12 +296,13 @@
       cadena = cadena.then(function () { return escribir(ruta, estado.imagenes[ruta].base64, null, 'Página - Nuevo - Imagen ' + ruta.split('/').pop()); })
         .then(function () { estado.imagenes[ruta].subida = true; });
     });
-    ['equipo', 'clientes'].forEach(function (s) {
+    archivosDeSecciones().forEach(function (archivo) {
       cadena = cadena.then(function () {
-        if (!estado.cambios[s]) { return; }
-        var c = SECCIONES[s], info = estado.archivos[c.archivo];
-        return escribir(c.archivo, aBase64(armarArchivo(info)), info.sha, 'Página - Modificación - ' + c.titulo + ' actualizado desde el panel')
-          .then(function (sha) { info.sha = sha || info.sha; estado.cambios[s] = false; });
+        var secs = LISTA_SECCIONES.filter(function (s) { return SECCIONES[s].archivo === archivo && estado.cambios[s]; });
+        if (!secs.length) { return; }
+        var info = estado.archivos[archivo], titulos = secs.map(function (s) { return SECCIONES[s].titulo; }).join(' y ');
+        return escribir(archivo, aBase64(armarArchivo(info)), info.sha, 'Página - Modificación - ' + titulos + ' actualizado desde el panel')
+          .then(function (sha) { info.sha = sha || info.sha; secs.forEach(function (s) { estado.cambios[s] = false; }); });
       });
     });
     cadena.then(function () {
@@ -329,8 +355,8 @@
   $('boton-guardar').addEventListener('click', guardar);
   $('boton-descartar').addEventListener('click', function () {
     if (!confirm('¿Descartar todos los cambios sin guardar?')) { return; }
-    estado.cambios = { equipo: false, clientes: false }; estado.imagenes = {}; $('barra-guardar').hidden = true;
-    Promise.all([cargarArchivo(SECCIONES.equipo.archivo), cargarArchivo(SECCIONES.clientes.archivo)]).then(function () { elegirSeccion(estado.seccion); });
+    LISTA_SECCIONES.forEach(function (s) { estado.cambios[s] = false; }); estado.imagenes = {}; $('barra-guardar').hidden = true;
+    cargarTodos().then(function () { elegirSeccion(estado.seccion); });
   });
   window.addEventListener('beforeunload', function (ev) { if (hayCambios()) { ev.preventDefault(); ev.returnValue = ''; } });
 

@@ -15,10 +15,17 @@ Object.assign(window.SITIO, {
   ],
 
 
+  /* PARTNERS: se muestran en la tarjeta de abajo de la portada, en este orden.
+     nombre = título · etiqueta = cápsula de color (por ejemplo "Odoo Official Partner") · descripcion = texto corto
+     enlace = página del partner (se abre en otra pestaña) · color = color de la cápsula y del borde al pasar el mouse.
+     Con más de 2 visibles, la fila pasa a ser un carrusel (ver carrusel.partners en general.js). visible: false lo oculta sin borrarlo. */
   partners: [
-    { nombre: "Odoo", distintivo: "Official Partner", descripcion: "Software de gestión empresarial. Implementamos Odoo y Odoo.sh.", iniciales: "O", color: "#714b67", logo: "assets/partners/odoo.png", enlace: "https://www.odoo.com", visible: true },
-    { nombre: "Code100", distintivo: "", descripcion: "Firma digital y firma electrónica para facturación electrónica.", iniciales: "C", color: "#0a7cba", logo: "assets/partners/code100.png", enlace: "https://code100.com.py/", visible: true }
+    { nombre: "Odoo", etiqueta: "Odoo Official Partner", descripcion: "Implementación, licencias y soporte del ERP", color: "#714b67", logo: "assets/partners/odoo.svg", enlace: "https://www.odoo.com/es", visible: true },
+    { nombre: "Code100", etiqueta: "Partner de firma digital", descripcion: "Firma digital y electrónica para la facturación electrónica", color: "#0891b2", logo: "assets/partners/code100.png", enlace: "https://code100.com.py/", visible: true }
   ],
+
+  /* Texto de la tarjeta de partners: los nombres se agregan solos ("Trabajamos de la mano de Odoo y Code100 …") */
+  partnersTexto: { etiqueta: "Nuestros partners", final: "para implementar tu sistema de gestión y tu facturación electrónica en Paraguay." },
 
 
   /* Testimonios: ocultos hasta tener frases reales (visible: true para mostrarlos) */

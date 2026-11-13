@@ -9,6 +9,29 @@
     return '<div class="cliente">' + logo + '<h3>' + esc(c.nombre) + '</h3><span class="rubro">' + esc(c.rubro) + '</span>' + grupo + '</div>';
   }).join('');
   armarCarrusel('pista-clientes', clientes, visibles(d.clientes).length, (d.carrusel || {}).clientes);
+  /* Partners (tarjeta de abajo de la portada): fijos o en carrusel según la cantidad */
+  var cajaSocios = document.getElementById('lista-socios'), socios = visibles(d.partners);
+  if (cajaSocios) {
+    var pt = d.partnersTexto || {};
+    var nombres = socios.map(function (p) { return '<b>' + esc(p.nombre) + '</b>'; });
+    var unidos = nombres.length > 1 ? nombres.slice(0, -1).join(', ') + ' y ' + nombres[nombres.length - 1] : nombres.join('');
+    if (pt.etiqueta) { document.getElementById('socios-etiqueta').textContent = pt.etiqueta; }
+    document.getElementById('socios-texto').innerHTML = 'Trabajamos de la mano de ' + unidos + ' ' + esc(pt.final || '');
+    var htmlSocios = socios.map(function (p) {
+      var abre = p.enlace ? '<a class="socio" href="' + esc(p.enlace) + '" target="_blank" rel="noopener"' : '<div class="socio"';
+      var logo = p.logo ? '<img src="' + esc(p.logo) + '" alt="' + esc(p.nombre) + '">' : '<span class="socio-ini">' + esc(p.iniciales || String(p.nombre || '').charAt(0)) + '</span>';
+      var etiqueta = p.etiqueta || p.distintivo;
+      return abre + ' style="--sc:' + esc(p.color || '#0056ff') + '"><span class="socio-logo">' + logo + '</span>' +
+        '<span class="socio-info">' + (etiqueta ? '<em>' + esc(etiqueta) + '</em>' : '') + '<b>' + esc(p.nombre) + '</b><small>' + esc(p.descripcion) + '</small></span>' +
+        (p.enlace ? '<span class="socio-ir" aria-hidden="true">↗</span></a>' : '</div>');
+    }).join('');
+    var confSo = (d.carrusel || {}).partners || {};
+    if (socios.length > (confSo.mostrarFijosHasta || 2)) {
+      cajaSocios.classList.add('en-carrusel');
+      cajaSocios.innerHTML = '<div class="carrusel" aria-label="Partners"><div class="pista" id="pista-socios"></div></div>';
+      armarCarrusel('pista-socios', htmlSocios, socios.length, confSo);
+    } else { cajaSocios.innerHTML = htmlSocios; }
+  }
   (document.getElementById('lista-partners') || {}).innerHTML = visibles(d.partners).map(function (p) {
     var abre = p.enlace ? '<a class="partner" href="' + esc(p.enlace) + '" target="_blank" rel="noopener">' : '<div class="partner">';
     var cierra = p.enlace ? '</a>' : '</div>';

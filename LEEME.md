@@ -92,6 +92,8 @@ tocar archivos:
   hasta 5 líneas, línea final y color).
 - **Clientes:** agregar, editar, ordenar, ocultar o eliminar clientes (logo y sus tres líneas: título,
   subtítulo y tercera línea).
+- **Partners:** agregar, editar, ordenar, ocultar o eliminar partners (logo, nombre, etiqueta, descripción,
+  página web y color). Con más de 2 visibles, la tarjeta de partners pasa a ser un carrusel que avanza de a una.
 
 Cómo funciona:
 

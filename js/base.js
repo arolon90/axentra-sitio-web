@@ -29,7 +29,9 @@
     var mitad = function () { return pista.scrollWidth / 2; };
     var paso = function () { var e = pista.firstElementChild; return e ? e.getBoundingClientRect().width + 18 : 260; };
     var normalizar = function (x) { var m = mitad(); return m ? ((x % m) + m) % m : 0; };
+    var espera = 0;
     var mover = function (direccion) {
+      espera = 0;
       var base = objetivo === null ? desplazamiento : objetivo;
       objetivo = base + direccion * paso();
     };
@@ -47,6 +49,10 @@
         var falta = objetivo - desplazamiento;
         desplazamiento += falta * Math.min(1, dt * 9);
         if (Math.abs(falta) < 0.5) { desplazamiento = objetivo; objetivo = null; }
+      } else if (girar && !pausa && conf.modo === 'pasos') {
+        /* modo "pasos": se detiene en cada tarjeta y avanza una entera cada "segundosPorElemento" */
+        espera += dt;
+        if (espera >= segundos) { espera = 0; mover(1); }
       } else if (girar && !pausa) {
         desplazamiento += dt * paso() / segundos;
       }

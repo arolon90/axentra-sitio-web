@@ -41,3 +41,23 @@
   .socio { padding: 10px; gap: 8px; } .socio-logo { height: 58px; padding: 10px 12px; } .socio-logo img { max-height: 32px; max-width: 86%; } .socio-code .socio-logo img { max-height: 38px; }
   .socio-info small { font-size: .74rem; } .socio-info em { font-size: .56rem; white-space: normal; }
 }
+
+/* Partners desde la configuración: texto a la izquierda y partners a la derecha, fijos o en carrusel */
+.confianza-tarjeta { grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); }
+.socios { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; min-width: 0; container-type: inline-size; }
+.socio-ini { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; color: #fff; font: 800 1.1rem var(--titulos); background: var(--sc); }
+.socios.en-carrusel { display: block; }
+.socios.en-carrusel .carrusel { margin-top: 0; padding: 6px 0 8px; -webkit-mask-image: none; mask-image: none; }
+.socios.en-carrusel .pista { gap: 18px; align-items: stretch; }
+.socios.en-carrusel .socio { flex: 0 0 calc(50cqw - 9px); }
+.socios.en-carrusel .socio:hover { transform: translateY(-3px); }
+.confianza .flecha { top: 50%; width: 40px; height: 40px; font-size: 1.5rem; }
+.confianza .flecha.izquierda { left: -22px; } .confianza .flecha.derecha { right: -22px; }
+@container (max-width: 460px) { .socios.en-carrusel .socio { flex-basis: 100cqw; } }
+@media (max-width: 1000px) { .confianza-tarjeta { grid-template-columns: 1fr; } }
+@media (max-width: 860px) {
+  .confianza .carrusel-envoltura { padding-bottom: 54px; }
+  .confianza .flecha { top: auto; bottom: 0; transform: none; }
+  .confianza .flecha:hover { transform: scale(1.08); }
+  .confianza .flecha.izquierda { left: calc(50% - 48px); } .confianza .flecha.derecha { right: calc(50% - 48px); }
+}
