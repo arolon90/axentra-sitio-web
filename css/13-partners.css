@@ -61,3 +61,22 @@
   .confianza .flecha:hover { transform: scale(1.08); }
   .confianza .flecha.izquierda { left: calc(50% - 48px); } .confianza .flecha.derecha { right: calc(50% - 48px); }
 }
+
+/* Partners: título y subtítulo arriba, carrusel que corre debajo a todo el ancho */
+.confianza-tarjeta { display: block; padding: 26px 28px 20px; }
+.confianza-texto { display: block; padding: 0 4px 6px; text-align: left; }
+.confianza-titulo { font-size: clamp(1.25rem, 2vw, 1.55rem); margin: 0 0 6px; color: var(--marino); }
+.confianza-titulo em { font-style: normal; color: var(--azul); }
+.confianza-texto p { max-width: 760px; }
+.socios { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.socios.en-carrusel .carrusel { padding: 10px 0 8px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent); }
+.socios.en-carrusel .socio { flex: 0 0 calc(33.333cqw - 12px); }
+@container (max-width: 820px) { .socios.en-carrusel .socio { flex-basis: calc(50cqw - 9px); } }
+@container (max-width: 460px) { .socios.en-carrusel .socio { flex-basis: 84cqw; } }
+.confianza .flecha.izquierda { left: -18px; } .confianza .flecha.derecha { right: -18px; }
+@media (max-width: 860px) {
+  .confianza-tarjeta { padding: 20px 16px 16px; }
+  .confianza-texto { text-align: center; }
+  .confianza-texto p { margin: 0 auto; }
+  .confianza .flecha.izquierda { left: calc(50% - 48px); } .confianza .flecha.derecha { right: calc(50% - 48px); }
+}

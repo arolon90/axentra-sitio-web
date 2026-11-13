@@ -93,7 +93,11 @@ tocar archivos:
 - **Clientes:** agregar, editar, ordenar, ocultar o eliminar clientes (logo y sus tres líneas: título,
   subtítulo y tercera línea).
 - **Partners:** agregar, editar, ordenar, ocultar o eliminar partners (logo, nombre, etiqueta, descripción,
-  página web y color). Con más de 2 visibles, la tarjeta de partners pasa a ser un carrusel que avanza de a una.
+  página web y color). Se muestran en un carrusel que corre solo, debajo del título y el subtítulo.
+- **Orden de aparición:** cada persona, cliente y partner tiene un número de orden (1 es el primero). Se cambia
+  escribiendo el número o con las flechas ▲▼ de la lista.
+- **Textos de la sección:** en Clientes y Partners se editan el título y el subtítulo. La palabra entre
+  asteriscos va resaltada, y en Partners `{partners}` se reemplaza por los nombres.
 
 Cómo funciona:
 

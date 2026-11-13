@@ -2,7 +2,16 @@
    Cada sección (js/secciones/*.js) las toma de window.AX. */
 (function () {
   var d = window.SITIO || {};
-  var visibles = function (lista) { return (lista || []).filter(function (x) { return x.visible !== false; }); };
+  /* elementos visibles, ordenados por "orden" (los que no lo tienen van al final, en su orden original) */
+  var visibles = function (lista) {
+    return (lista || []).map(function (x, i) { return { x: x, i: i }; })
+      .filter(function (e) { return e.x.visible !== false; })
+      .sort(function (a, b) {
+        var oa = typeof a.x.orden === 'number' ? a.x.orden : Infinity, ob = typeof b.x.orden === 'number' ? b.x.orden : Infinity;
+        return oa === ob ? a.i - b.i : oa - ob;
+      })
+      .map(function (e) { return e.x; });
+  };
   var icono = function (v) {
     if (/^i:/.test(v || '')) { return (window.ICONOS || {})[v.slice(2)] || ''; }
     return /\.(svg|png|webp|jpg)$/i.test(v || '') ? '<img src="' + v + '" alt="" class="icono-img">' : (v || '');

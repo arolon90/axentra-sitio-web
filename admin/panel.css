@@ -121,3 +121,11 @@ h1, h2, h3 { font-family: var(--titulos); color: var(--marino); margin: 0; }
 .previa-socio h3 { font-size: 1rem; }
 .previa-socio small { color: var(--suave); font-size: .8rem; line-height: 1.35; }
 .previa-socio .ir { color: var(--sc); font-size: .72rem; font-weight: 700; word-break: break-all; }
+
+/* Textos de la sección y número de orden */
+.textos-seccion { margin-top: 14px; padding: 12px 14px; border-radius: 14px; background: var(--gris); border: 1px solid var(--borde); }
+.textos-seccion summary { cursor: pointer; font: 700 .92rem var(--titulos); color: var(--marino); }
+.textos-campos { display: grid; gap: 12px; margin-top: 12px; }
+.textos-seccion .campo input, .textos-seccion .campo textarea { background: #fff; }
+.textos-seccion .campo textarea { min-height: 70px; }
+.item-num { flex: none; width: 24px; height: 24px; border-radius: 50%; display: grid; place-items: center; font: 800 .74rem var(--titulos); color: var(--azul); background: rgba(0, 86, 255, .1); }

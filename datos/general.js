@@ -28,8 +28,7 @@ Object.assign(window.SITIO, {
     testimonios: { activo: true, segundosPorElemento: 10, pausarAlPasarMouse: true, respetarAnimacionesApagadas: false },
     /* el equipo se muestra lado a lado con hasta "mostrarFijosHasta" personas; con más, pasa a ser un carrusel con flechas */
     equipo:      { activo: true, segundosPorElemento: 9, pausarAlPasarMouse: true, respetarAnimacionesApagadas: true, mostrarFijosHasta: 2 },
-    /* los partners se muestran fijos con hasta "mostrarFijosHasta"; con más, pasan a ser un carrusel con flechas.
-       modo "pasos": avanza de a una tarjeta entera (sin quedar cortada) cada "segundosPorElemento" */
-    partners:    { activo: true, modo: "pasos", segundosPorElemento: 5, pausarAlPasarMouse: true, respetarAnimacionesApagadas: true, mostrarFijosHasta: 2 }
+    /* partners: con 2 o más visibles corren solos en un carrusel ("mostrarFijosHasta": hasta cuántos se muestran quietos) */
+    partners:    { activo: true, segundosPorElemento: 7, pausarAlPasarMouse: true, respetarAnimacionesApagadas: false, mostrarFijosHasta: 1 }
   }
 });

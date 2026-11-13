@@ -9,14 +9,20 @@
     return '<div class="cliente">' + logo + '<h3>' + esc(c.nombre) + '</h3><span class="rubro">' + esc(c.rubro) + '</span>' + grupo + '</div>';
   }).join('');
   armarCarrusel('pista-clientes', clientes, visibles(d.clientes).length, (d.carrusel || {}).clientes);
-  /* Partners (tarjeta de abajo de la portada): fijos o en carrusel según la cantidad */
+  /* Textos de las secciones, desde la configuración ("*palabra*" va resaltada) */
+  var conResaltado = function (t) { return esc(t).replace(/\*([^*]+)\*/g, '<em>$1</em>'); };
+  var ponerTexto = function (id, t, html) { var el = document.getElementById(id); if (el && t) { if (html) { el.innerHTML = conResaltado(t); } else { el.textContent = t; } } };
+  var ct = d.clientesTexto || {};
+  ponerTexto('clientes-etiqueta', ct.etiqueta); ponerTexto('clientes-titulo', ct.titulo, true); ponerTexto('clientes-subtitulo', ct.subtitulo);
+  /* Partners (tarjeta de abajo de la portada): título, subtítulo y carrusel que corre solo */
   var cajaSocios = document.getElementById('lista-socios'), socios = visibles(d.partners);
   if (cajaSocios) {
     var pt = d.partnersTexto || {};
     var nombres = socios.map(function (p) { return '<b>' + esc(p.nombre) + '</b>'; });
     var unidos = nombres.length > 1 ? nombres.slice(0, -1).join(', ') + ' y ' + nombres[nombres.length - 1] : nombres.join('');
-    if (pt.etiqueta) { document.getElementById('socios-etiqueta').textContent = pt.etiqueta; }
-    document.getElementById('socios-texto').innerHTML = 'Trabajamos de la mano de ' + unidos + ' ' + esc(pt.final || '');
+    ponerTexto('socios-titulo', pt.titulo, true);
+    var sub = pt.subtitulo || (pt.final ? 'Trabajamos de la mano de {partners} ' + pt.final : '');
+    document.getElementById('socios-texto').innerHTML = conResaltado(sub).replace('{partners}', unidos);
     var htmlSocios = socios.map(function (p) {
       var abre = p.enlace ? '<a class="socio" href="' + esc(p.enlace) + '" target="_blank" rel="noopener"' : '<div class="socio"';
       var logo = p.logo ? '<img src="' + esc(p.logo) + '" alt="' + esc(p.nombre) + '">' : '<span class="socio-ini">' + esc(p.iniciales || String(p.nombre || '').charAt(0)) + '</span>';
@@ -26,7 +32,7 @@
         (p.enlace ? '<span class="socio-ir" aria-hidden="true">↗</span></a>' : '</div>');
     }).join('');
     var confSo = (d.carrusel || {}).partners || {};
-    if (socios.length > (confSo.mostrarFijosHasta || 2)) {
+    if (socios.length > (confSo.mostrarFijosHasta || 1)) {
       cajaSocios.classList.add('en-carrusel');
       cajaSocios.innerHTML = '<div class="carrusel" aria-label="Partners"><div class="pista" id="pista-socios"></div></div>';
       armarCarrusel('pista-socios', htmlSocios, socios.length, confSo);

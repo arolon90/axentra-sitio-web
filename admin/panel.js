@@ -44,6 +44,7 @@
       archivo: 'datos/clientes.js', clave: 'clientes', titulo: 'Clientes',
       ayuda: 'Cada tarjeta muestra el logo y tres líneas de texto. Se muestran en este orden, en el carrusel.',
       carpeta: 'assets/clientes/', campoImagen: 'logo', retrato: false,
+      textos: { clave: 'clientesTexto', campos: [{ k: 'etiqueta', t: 'Etiqueta (arriba del título)' }, { k: 'titulo', t: 'Título', ayuda: 'La palabra entre asteriscos va resaltada: Confían en *nosotros*' }, { k: 'subtitulo', t: 'Subtítulo', largo: true }] },
       nuevo: function () { return { nombre: 'Nombre del cliente', rubro: 'Rubro', detalle: '', iniciales: '', color: '#0056ff', logo: '', visible: true }; },
       resumen: function (x) { return [x.nombre, [x.rubro, x.detalle].filter(Boolean).join(' · ')]; },
       campos: [
@@ -57,8 +58,9 @@
     },
     partners: {
       archivo: 'datos/clientes.js', clave: 'partners', titulo: 'Partners',
-      ayuda: 'Se muestran en la tarjeta de abajo de la portada, en este orden. Con más de 2 visibles, pasan a ser un carrusel con flechas.',
+      ayuda: 'Se muestran en la tarjeta de abajo de la portada, en un carrusel que corre solo, en este orden.',
       carpeta: 'assets/partners/', campoImagen: 'logo', retrato: false,
+      textos: { clave: 'partnersTexto', campos: [{ k: 'titulo', t: 'Título', ayuda: 'La palabra entre asteriscos va resaltada.' }, { k: 'subtitulo', t: 'Subtítulo (descripción)', largo: true, ayuda: '{partners} se reemplaza por los nombres de los partners visibles.' }] },
       nuevo: function () { return { nombre: 'Nombre del partner', etiqueta: 'Partner', descripcion: 'Qué hacemos juntos', color: '#0056ff', logo: '', enlace: '', visible: true }; },
       resumen: function (x) { return [x.nombre, x.etiqueta || x.distintivo || '']; },
       campos: [
@@ -80,7 +82,7 @@
     equipoValores: 'Lo que nos define (se muestra junto al equipo)',
     clientes: 'CLIENTES: cada tarjeta muestra el logo y tres líneas de texto.\n     nombre = título · rubro = subtítulo · detalle = tercera línea (opcional, por ejemplo "Parte de Grupo Noroda").\n     Si "logo" se deja "", se muestran las iniciales con el color indicado. visible: false lo oculta sin borrarlo.',
     partners: 'PARTNERS: se muestran en la tarjeta de abajo de la portada, en este orden.\n     nombre = título · etiqueta = cápsula de color · descripcion = texto corto · enlace = página del partner (se abre en otra pestaña).\n     Con más de 2 visibles, la fila pasa a ser un carrusel (ver carrusel.partners en general.js). visible: false lo oculta sin borrarlo.',
-    partnersTexto: 'Texto de la tarjeta de partners: los nombres se agregan solos ("Trabajamos de la mano de Odoo y Code100 …")',
+    clientesTexto: 'Textos de las secciones (también se editan desde el panel).\n     En los títulos, la palabra entre asteriscos va resaltada: "Confían en *nosotros*".\n     En el subtítulo de partners, {partners} se reemplaza por los nombres de los partners visibles.',
     testimonios: 'Testimonios: ocultos hasta tener frases reales (visible: true para mostrarlos)'
   };
 
@@ -155,7 +157,16 @@
   var cargarArchivo = function (ruta) {
     return leerArchivo(ruta).then(function (r) {
       var i = r.texto.indexOf('window.SITIO');
-      estado.archivos[ruta] = { sha: r.sha, cabecera: i > 0 ? r.texto.slice(0, i) : '', datos: evaluar(r.texto) };
+      var datos = evaluar(r.texto);
+      LISTA_SECCIONES.forEach(function (s) {
+        var c = SECCIONES[s], l = datos[c.clave];
+        if (c.archivo !== ruta || !Array.isArray(l)) { return; }
+        var ord = function (x) { return typeof x.orden === 'number' ? x.orden : Infinity; };
+        l.map(function (x, k) { return { x: x, k: k }; }).sort(function (a, b2) { return ord(a.x) === ord(b2.x) ? a.k - b2.k : ord(a.x) - ord(b2.x); })
+          .forEach(function (e, k) { l[k] = e.x; });
+        l.forEach(function (x, k) { x.orden = k + 1; });
+      });
+      estado.archivos[ruta] = { sha: r.sha, cabecera: i > 0 ? r.texto.slice(0, i) : '', datos: datos };
     });
   };
 
@@ -190,6 +201,7 @@
   };
 
   /* ---------------------------------------------------------------- lista y editor */
+  var renumerar = function () { lista().forEach(function (x, k) { x.orden = k + 1; }); };
   var lista = function () { var s = SECCIONES[estado.seccion]; return estado.archivos[s.archivo].datos[s.clave]; };
   var hayCambios = function () { return LISTA_SECCIONES.some(function (s) { return estado.cambios[s]; }); };
   var marcarCambio = function () {
@@ -203,7 +215,18 @@
     estado.seccion = s; estado.elegido = 0;
     document.querySelectorAll('.pestana').forEach(function (b) { b.setAttribute('aria-selected', b.getAttribute('data-seccion') === s ? 'true' : 'false'); });
     $('lista-titulo').textContent = SECCIONES[s].titulo; $('lista-ayuda').textContent = SECCIONES[s].ayuda;
-    pintarLista(); pintarEditor();
+    pintarTextos(); pintarLista(); pintarEditor();
+  };
+  var pintarTextos = function () {
+    var s = SECCIONES[estado.seccion], caja = $('textos-seccion');
+    if (!s.textos) { caja.hidden = true; caja.innerHTML = ''; return; }
+    var datos = estado.archivos[s.archivo].datos, t = datos[s.textos.clave] = datos[s.textos.clave] || {};
+    caja.hidden = false;
+    caja.innerHTML = '<summary>Textos de la sección</summary><div class="textos-campos">' + s.textos.campos.map(function (c) {
+      var v = t[c.k] || '';
+      return '<label class="campo"><span>' + esc(c.t) + '</span>' + (c.largo ? '<textarea rows="3" data-texto="' + c.k + '">' + esc(v) + '</textarea>' : '<input type="text" data-texto="' + c.k + '" value="' + esc(v) + '">') +
+        (c.ayuda ? '<small>' + esc(c.ayuda) + '</small>' : '') + '</label>';
+    }).join('') + '</div>';
   };
   var pintarLista = function () {
     var s = SECCIONES[estado.seccion], items = lista();
@@ -211,7 +234,7 @@
       var r = s.resumen(x), img = x[s.campoImagen];
       var vista = img ? '<span class="item-img' + (s.retrato ? '' : ' logo') + '"><img src="' + esc(urlImagen(img)) + '" alt=""></span>'
         : '<span class="item-img" style="--c:' + esc(x.color || '#0056ff') + '">' + esc(iniciales(x)) + '</span>';
-      return '<li class="item' + (i === estado.elegido ? ' activo' : '') + (x.visible === false ? ' oculto' : '') + '" data-i="' + i + '">' + vista +
+      return '<li class="item' + (i === estado.elegido ? ' activo' : '') + (x.visible === false ? ' oculto' : '') + '" data-i="' + i + '"><span class="item-num">' + (i + 1) + '</span>' + vista +
         '<span class="item-texto"><b>' + esc(r[0]) + '</b><small>' + esc(r[1]) + '</small></span>' + (x.visible === false ? '<span class="item-oculto">Oculto</span>' : '') +
         '<span class="item-orden"><button type="button" class="icono-btn" data-mover="-1" aria-label="Subir"' + (i === 0 ? ' disabled' : '') + '>▲</button>' +
         '<button type="button" class="icono-btn" data-mover="1" aria-label="Bajar"' + (i === items.length - 1 ? ' disabled' : '') + '>▼</button></span></li>';
@@ -233,7 +256,8 @@
       (img ? '<button type="button" class="boton chico secundario" id="quitar-imagen">Quitar</button>' : '') +
       '<small class="sub">PNG, JPG, WEBP o SVG, hasta 2 MB.' + (s.retrato ? ' Ideal: 400 × 500.' : ' Ideal: fondo transparente.') + '</small></div></div></div>';
     $('editor').innerHTML = '<div class="editor-cabeza"><h2>' + esc(x.nombre || 'Sin nombre') + '</h2><button type="button" class="boton chico peligro" id="boton-eliminar">Eliminar</button></div>' +
-      '<div class="formulario">' + imagen + campos + '</div>' + (estado.seccion === 'clientes' || estado.seccion === 'partners' ? '<div class="vista-previa"><span>Así se ve en la página</span><div id="previa"></div></div>' : '');
+      '<div class="formulario"><label class="campo"><span>Orden de aparición</span><input id="campo-orden" type="number" min="1" max="' + items.length + '" value="' + (estado.elegido + 1) + '">' +
+      '<small>1 es el primero. También podés usar las flechas ▲▼ de la lista.</small></label>' + imagen + campos + '</div>' + (estado.seccion === 'clientes' || estado.seccion === 'partners' ? '<div class="vista-previa"><span>Así se ve en la página</span><div id="previa"></div></div>' : '');
     actualizarPrevia(); contarLineas();
   };
   var actualizarPrevia = function () {
@@ -330,17 +354,27 @@
     if (mover) {
       var items = lista(), j = i + (+mover.getAttribute('data-mover'));
       if (j < 0 || j >= items.length) { return; }
-      var tmp = items[i]; items[i] = items[j]; items[j] = tmp; estado.elegido = j; marcarCambio();
+      var tmp = items[i]; items[i] = items[j]; items[j] = tmp; estado.elegido = j; renumerar(); marcarCambio();
     } else { estado.elegido = i; }
     pintarLista(); pintarEditor();
   });
   $('boton-agregar').addEventListener('click', function () {
-    var items = lista(); items.push(SECCIONES[estado.seccion].nuevo()); estado.elegido = items.length - 1;
+    var items = lista(); items.push(SECCIONES[estado.seccion].nuevo()); estado.elegido = items.length - 1; renumerar();
     marcarCambio(); pintarLista(); pintarEditor();
     var n = $('campo-nombre'); if (n) { n.focus(); n.select(); }
   });
   $('editor').addEventListener('input', alEditar);
+  $('textos-seccion').addEventListener('input', function (ev) {
+    var k = ev.target.getAttribute('data-texto'); if (!k) { return; }
+    var s = SECCIONES[estado.seccion]; estado.archivos[s.archivo].datos[s.textos.clave][k] = ev.target.value; marcarCambio();
+  });
   $('editor').addEventListener('change', function (ev) {
+    if (ev.target.id === 'campo-orden') {
+      var items = lista(), n = Math.round(+ev.target.value);
+      if (!n || n < 1) { n = 1; } if (n > items.length) { n = items.length; }
+      var x = items.splice(estado.elegido, 1)[0]; items.splice(n - 1, 0, x); estado.elegido = n - 1;
+      renumerar(); marcarCambio(); pintarLista(); pintarEditor(); return;
+    }
     if (ev.target.id === 'archivo-imagen') { alElegirImagen(ev.target.files[0]); return; }
     if (ev.target.type === 'checkbox') { alEditar(ev); }
   });
@@ -349,7 +383,7 @@
     if (ev.target.id === 'boton-eliminar') {
       var x = lista()[estado.elegido];
       if (!confirm('¿Eliminar "' + (x.nombre || 'este elemento') + '"? Si solo querés ocultarlo, desmarcá "Mostrar en la página".')) { return; }
-      lista().splice(estado.elegido, 1); estado.elegido = Math.max(0, estado.elegido - 1); marcarCambio(); pintarLista(); pintarEditor();
+      lista().splice(estado.elegido, 1); estado.elegido = Math.max(0, estado.elegido - 1); renumerar(); marcarCambio(); pintarLista(); pintarEditor();
     }
   });
   $('boton-guardar').addEventListener('click', guardar);
