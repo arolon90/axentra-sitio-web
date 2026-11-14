@@ -29,16 +29,6 @@ Object.assign(window.SITIO, {
       visible: true
     },
     {
-      orden: 2,
-      nombre: "Code100",
-      etiqueta: "Partner de firma digital",
-      descripcion: "Firma digital y electrónica para la facturación electrónica",
-      color: "#0891b2",
-      logo: "assets/partners/code100.png",
-      enlace: "https://code100.com.py/",
-      visible: true
-    },
-    {
       nombre: "BG Abogados",
       etiqueta: "Partner",
       descripcion: "Asesoría Jurídica",
@@ -46,7 +36,17 @@ Object.assign(window.SITIO, {
       logo: "assets/partners/bg-abogados-mwgp2cxd.png",
       enlace: "www.bgabogados.com.py",
       visible: true,
-      orden: 3
+      orden: 2
+    },
+    {
+      orden: 3,
+      nombre: "Code100",
+      etiqueta: "Partner de firma digital",
+      descripcion: "Firma digital y electrónica para la facturación electrónica",
+      color: "#0891b2",
+      logo: "assets/partners/code100.png",
+      enlace: "https://code100.com.py/",
+      visible: true
     }
   ],
 
