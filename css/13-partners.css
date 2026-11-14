@@ -80,3 +80,8 @@
   .confianza-texto p { margin: 0 auto; }
   .confianza .flecha.izquierda { left: calc(50% - 48px); } .confianza .flecha.derecha { right: calc(50% - 48px); }
 }
+
+/* Logos cuadrados o verticales: ocupan todo el alto del recuadro */
+.socio-logo.logo-cuadrado { padding: 6px 14px; }
+.socio-logo.logo-cuadrado img { max-height: 66px; max-width: 70%; }
+@media (max-width: 560px) { .socio-logo.logo-cuadrado img { max-height: 48px; } }

@@ -254,7 +254,7 @@
       '<div class="imagen-vista' + (s.retrato ? ' retrato' : '') + '">' + (img ? '<img src="' + esc(urlImagen(img)) + '" alt="">' : 'Sin imagen') + '</div>' +
       '<div class="imagen-botones"><label class="boton chico secundario">Elegir imagen<input type="file" id="archivo-imagen" accept="image/png,image/jpeg,image/webp,image/svg+xml" hidden></label>' +
       (img ? '<button type="button" class="boton chico secundario" id="quitar-imagen">Quitar</button>' : '') +
-      '<small class="sub">PNG, JPG, WEBP o SVG, hasta 2 MB.' + (s.retrato ? ' Ideal: 400 × 500.' : ' Ideal: fondo transparente.') + '</small></div></div></div>';
+      '<small class="sub">PNG, JPG, WEBP o SVG, hasta 2 MB.' + (s.retrato ? ' Ideal: 400 × 500.' : ' Ideal: fondo transparente. Los bordes blancos se recortan solos.') + '</small></div></div></div>';
     $('editor').innerHTML = '<div class="editor-cabeza"><h2>' + esc(x.nombre || 'Sin nombre') + '</h2><button type="button" class="boton chico peligro" id="boton-eliminar">Eliminar</button></div>' +
       '<div class="formulario"><label class="campo"><span>Orden de aparición</span><input id="campo-orden" type="number" min="1" max="' + items.length + '" value="' + (estado.elegido + 1) + '">' +
       '<small>1 es el primero. También podés usar las flechas ▲▼ de la lista.</small></label>' + imagen + campos + '</div>' + (estado.seccion === 'clientes' || estado.seccion === 'partners' ? '<div class="vista-previa"><span>Así se ve en la página</span><div id="previa"></div></div>' : '');
@@ -292,6 +292,32 @@
     var base = String(texto || 'imagen').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40) || 'imagen';
     return base + '-' + Date.now().toString(36) + '.' + ext;
   };
+  /* Logos: recorta los bordes blancos o transparentes, para que el logo ocupe su recuadro.
+     Devuelve un PNG (máximo 800 px) o null si no hace falta recortar. */
+  var recortarBordes = function (urlOriginal, listo) {
+    var img = new Image();
+    img.onload = function () {
+      var w = img.naturalWidth, h = img.naturalHeight, c = document.createElement('canvas'); c.width = w; c.height = h;
+      var g = c.getContext('2d'); g.drawImage(img, 0, 0);
+      var px; try { px = g.getImageData(0, 0, w, h).data; } catch (e) { listo(null); return; }
+      var x0 = w, y0 = h, x1 = -1, y1 = -1;
+      for (var y = 0; y < h; y++) { for (var xx = 0; xx < w; xx++) {
+        var k = (y * w + xx) * 4;
+        if (px[k + 3] > 20 && !(px[k] > 240 && px[k + 1] > 240 && px[k + 2] > 240)) { if (xx < x0) { x0 = xx; } if (xx > x1) { x1 = xx; } if (y < y0) { y0 = y; } if (y > y1) { y1 = y; } }
+      } }
+      if (x1 < 0) { listo(null); return; }
+      var m = Math.round(Math.max(x1 - x0, y1 - y0) * 0.03);
+      x0 = Math.max(0, x0 - m); y0 = Math.max(0, y0 - m); x1 = Math.min(w - 1, x1 + m); y1 = Math.min(h - 1, y1 + m);
+      var cw = x1 - x0 + 1, chh = y1 - y0 + 1;
+      if (cw > w * 0.95 && chh > h * 0.95) { listo(null); return; }
+      var esc2 = Math.min(1, 800 / Math.max(cw, chh)), d = document.createElement('canvas');
+      d.width = Math.round(cw * esc2); d.height = Math.round(chh * esc2);
+      d.getContext('2d').drawImage(c, x0, y0, cw, chh, 0, 0, d.width, d.height);
+      listo(d.toDataURL('image/png'));
+    };
+    img.onerror = function () { listo(null); };
+    img.src = urlOriginal;
+  };
   var alElegirImagen = function (archivo) {
     if (!archivo) { return; }
     if (archivo.size > MAX_IMAGEN) { avisar('La imagen pesa más de 2 MB. Achicala y probá de nuevo.', 'mal'); return; }
@@ -299,9 +325,13 @@
     if (!ext) { avisar('Formato no admitido. Usá PNG, JPG, WEBP o SVG.', 'mal'); return; }
     var s = SECCIONES[estado.seccion], x = lista()[estado.elegido], lector = new FileReader();
     lector.onload = function () {
-      var ruta = s.carpeta + nombreArchivo(x.nombre, ext);
-      estado.imagenes[ruta] = { base64: String(lector.result).split(',')[1], url: lector.result };
-      x[s.campoImagen] = ruta; marcarCambio(); pintarLista(); pintarEditor();
+      var guardarImagen = function (url, extension) {
+        var ruta = s.carpeta + nombreArchivo(x.nombre, extension);
+        estado.imagenes[ruta] = { base64: String(url).split(',')[1], url: url };
+        x[s.campoImagen] = ruta; marcarCambio(); pintarLista(); pintarEditor();
+      };
+      if (ext === 'svg' || s.retrato) { guardarImagen(lector.result, ext); return; }
+      recortarBordes(lector.result, function (url) { guardarImagen(url || lector.result, url ? 'png' : ext); });
     };
     lector.readAsDataURL(archivo);
   };

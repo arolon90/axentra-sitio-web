@@ -33,8 +33,8 @@ Object.assign(window.SITIO, {
       etiqueta: "Partner",
       descripcion: "Asesoría Jurídica",
       color: "#0056ff",
-      logo: "assets/partners/bg-abogados-mwgp74oh.png",
-      enlace: "www.bgabogados.com.py",
+      logo: "assets/partners/bg-abogados.png",
+      enlace: "https://www.bgabogados.com.py",
       visible: true,
       orden: 2
     },

@@ -24,7 +24,8 @@
     var sub = pt.subtitulo || (pt.final ? 'Trabajamos de la mano de {partners} ' + pt.final : '');
     document.getElementById('socios-texto').innerHTML = conResaltado(sub).replace('{partners}', unidos);
     var htmlSocios = socios.map(function (p) {
-      var abre = p.enlace ? '<a class="socio" href="' + esc(p.enlace) + '" target="_blank" rel="noopener"' : '<div class="socio"';
+      var url = p.enlace && !/^https?:\/\//i.test(p.enlace) ? 'https://' + p.enlace : p.enlace;
+      var abre = url ? '<a class="socio" href="' + esc(url) + '" target="_blank" rel="noopener"' : '<div class="socio"';
       var logo = p.logo ? '<img src="' + esc(p.logo) + '" alt="' + esc(p.nombre) + '">' : '<span class="socio-ini">' + esc(p.iniciales || String(p.nombre || '').charAt(0)) + '</span>';
       var etiqueta = p.etiqueta || p.distintivo;
       return abre + ' style="--sc:' + esc(p.color || '#0056ff') + '"><span class="socio-logo">' + logo + '</span>' +
@@ -37,6 +38,14 @@
       cajaSocios.innerHTML = '<div class="carrusel" aria-label="Partners"><div class="pista" id="pista-socios"></div></div>';
       armarCarrusel('pista-socios', htmlSocios, socios.length, confSo);
     } else { cajaSocios.innerHTML = htmlSocios; }
+    /* los logos casi cuadrados (o verticales) se muestran más grandes para que se lean igual que los apaisados */
+    var marcarForma = function (img) {
+      if (!img.naturalWidth) { return; }
+      img.closest('.socio-logo').classList.toggle('logo-cuadrado', img.naturalWidth / img.naturalHeight < 1.8);
+    };
+    cajaSocios.querySelectorAll('.socio-logo img').forEach(function (img) {
+      if (img.complete) { marcarForma(img); } else { img.addEventListener('load', function () { marcarForma(img); }); }
+    });
   }
   (document.getElementById('lista-partners') || {}).innerHTML = visibles(d.partners).map(function (p) {
     var abre = p.enlace ? '<a class="partner" href="' + esc(p.enlace) + '" target="_blank" rel="noopener">' : '<div class="partner">';
