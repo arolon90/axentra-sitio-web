@@ -7,11 +7,8 @@ Object.assign(window.SITIO, {
      nombre = título · rubro = subtítulo · detalle = tercera línea (opcional, por ejemplo "Parte de Grupo Noroda").
      Si "logo" se deja "", se muestran las iniciales con el color indicado. visible: false lo oculta sin borrarlo. */
   clientes: [
-    { orden: 1, nombre: "Grupo Noroda", rubro: "Agroganadero", detalle: "", iniciales: "GN", color: "#6d6e70", logo: "assets/clientes/grupo-noroda.png", visible: true },
-    { orden: 2, nombre: "Noroda Agroganadera", rubro: "Ganadería", detalle: "Parte de Grupo Noroda", iniciales: "N", color: "#2f3b2f", logo: "assets/clientes/noroda-agroganadera.png", visible: true },
-    { orden: 3, nombre: "Los Árboles Agroganadera", rubro: "Ganadería", detalle: "Parte de Grupo Noroda", iniciales: "LA", color: "#1f4d33", logo: "assets/clientes/los-arboles.png", visible: true },
-    { orden: 4, nombre: "Dino Labs EAS", rubro: "Tecnología · WhatsApp API e IA", detalle: "", iniciales: "DL", color: "#0056ff", logo: "assets/clientes/dino-labs.png", visible: true },
-    { orden: 5, nombre: "Veterinaria Petlliwood", rubro: "Salud animal", detalle: "", iniciales: "PW", color: "#111111", logo: "assets/clientes/veterinaria-pw.png", visible: true }
+    { orden: 1, nombre: "Dino Labs EAS", rubro: "Tecnología · WhatsApp API e IA", detalle: "", iniciales: "DL", color: "#0056ff", logo: "assets/clientes/dino-labs.png", visible: true },
+    { orden: 2, nombre: "Veterinaria Petlliwood", rubro: "Salud animal", detalle: "", iniciales: "PW", color: "#111111", logo: "assets/clientes/veterinaria-pw.png", visible: true }
   ],
 
   /* PARTNERS: se muestran en la tarjeta de abajo de la portada, en este orden.
